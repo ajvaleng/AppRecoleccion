@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Paradero" >
+
+    <Button
+        android:id="@+id/btSuben"
+        android:layout_width="140dp"
+        android:layout_height="150dp"
+        android:layout_alignBaseline="@+id/btBajan"
+        android:layout_alignBottom="@+id/btBajan"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/flechaarriba"
+        android:text="Bajan" />
+
+    <EditText
+        android:id="@+id/tbSubida"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tbBajan"
+        android:layout_alignBottom="@+id/tbBajan"
+        android:layout_alignLeft="@+id/btSuben"
+        android:layout_marginLeft="44dp"
+        android:ems="10"
+        android:enabled="false"
+        android:text="0" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/tbBajan"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btSuben"
+        android:layout_alignLeft="@+id/btBajan"
+        android:layout_marginBottom="52dp"
+        android:layout_marginLeft="42dp"
+        android:ems="10"
+        android:enabled="false"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/btBajan"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="111dp"
+        android:layout_toLeftOf="@+id/btSuben"
+        android:background="@drawable/flechaabajo"
+        android:text="Bajan" />
+
+    <Button
+        android:id="@+id/btSalidaParadero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btBajanCorregir"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:text="Salí del Paradero" />
+
+    <Button
+        android:id="@+id/btSubenCorregir"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/btSuben"
+        android:layout_below="@+id/btSuben"
+        android:layout_marginTop="31dp"
+        android:text="-"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btBajanCorregir"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btSubenCorregir"
+        android:layout_alignBottom="@+id/btSubenCorregir"
+        android:layout_alignLeft="@+id/btBajan"
+        android:text="-"
+        android:textSize="30sp" />
+
+</RelativeLayout>

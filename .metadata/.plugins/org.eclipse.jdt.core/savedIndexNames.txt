@@ -1,0 +1,5 @@
+INDEX VERSION 1.126+C:\Users\diego\AppRecoleccion\.metadata\.plugins\org.eclipse.jdt.core
+448774953.index
+559046326.index
+801091360.index
+2202064816.index
