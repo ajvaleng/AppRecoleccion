@@ -29,27 +29,23 @@
         android:hint="Nombre" />
 
     <EditText
+        android:id="@+id/tbRecorrido"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tbApellido"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="Recorrido" />
+
+    <EditText
         android:id="@+id/tbApellido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tbNombre"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Apellido" />
-
-    <EditText
-        android:id="@+id/tbRecorrido"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btEntrar"
-        android:layout_alignLeft="@+id/tbApellido"
-        android:layout_marginBottom="32dp"
-        android:ems="10"
-        android:hint="Recorrido" >
-
-        <requestFocus />
-    </EditText>
 
     <Button
         android:id="@+id/btEntrar"
@@ -57,7 +53,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="103dp"
+        android:layout_marginBottom="43dp"
         android:text="Entrar" />
+
+    <EditText
+        android:id="@+id/tbNPuerta"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btEntrar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp"
+        android:ems="10"
+        android:hint="Numero de Puerta"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Revise los Datos Ingresados"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FF0000"
+        android:visibility="invisible" />
 
 </RelativeLayout>
