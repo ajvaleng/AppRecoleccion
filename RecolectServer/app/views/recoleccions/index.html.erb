@@ -1,0 +1,43 @@
+<h1>Listing recoleccions</h1>
+
+<table>
+  <tr>
+    <th>Llegada paradero</th>
+    <th>Salida paradero</th>
+    <th>Presonas suben</th>
+    <th>Personas bajan</th>
+    <th>Long</th>
+    <th>Lat</th>
+    <th>Recorrido</th>
+    <th>Patente</th>
+    <th>Nombre</th>
+    <th>Puerta</th>
+    <th>Periodo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @recoleccions.each do |recoleccion| %>
+  <tr>
+    <td><%= recoleccion.llegada_paradero %></td>
+    <td><%= recoleccion.salida_paradero %></td>
+    <td><%= recoleccion.presonas_suben %></td>
+    <td><%= recoleccion.personas_bajan %></td>
+    <td><%= recoleccion.long %></td>
+    <td><%= recoleccion.lat %></td>
+    <td><%= recoleccion.recorrido %></td>
+    <td><%= recoleccion.patente %></td>
+    <td><%= recoleccion.nombre %></td>
+    <td><%= recoleccion.puerta %></td>
+    <td><%= recoleccion.periodo %></td>
+    <td><%= link_to 'Show', recoleccion %></td>
+    <td><%= link_to 'Edit', edit_recoleccion_path(recoleccion) %></td>
+    <td><%= link_to 'Destroy', recoleccion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Recoleccion', new_recoleccion_path %>

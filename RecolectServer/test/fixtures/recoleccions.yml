@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  llegada_paradero: MyString
+  salida_paradero: MyString
+  presonas_suben: 
+  personas_bajan: 
+  long: 
+  lat: 
+  recorrido: MyString
+  patente: MyString
+  nombre: MyString
+  puerta: 
+  periodo: 
+
+two:
+  llegada_paradero: MyString
+  salida_paradero: MyString
+  presonas_suben: 
+  personas_bajan: 
+  long: 
+  lat: 
+  recorrido: MyString
+  patente: MyString
+  nombre: MyString
+  puerta: 
+  periodo: 

@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Llegada paradero:</b>
+  <%= @recoleccion.llegada_paradero %>
+</p>
+
+<p>
+  <b>Salida paradero:</b>
+  <%= @recoleccion.salida_paradero %>
+</p>
+
+<p>
+  <b>Presonas suben:</b>
+  <%= @recoleccion.presonas_suben %>
+</p>
+
+<p>
+  <b>Personas bajan:</b>
+  <%= @recoleccion.personas_bajan %>
+</p>
+
+<p>
+  <b>Long:</b>
+  <%= @recoleccion.long %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @recoleccion.lat %>
+</p>
+
+<p>
+  <b>Recorrido:</b>
+  <%= @recoleccion.recorrido %>
+</p>
+
+<p>
+  <b>Patente:</b>
+  <%= @recoleccion.patente %>
+</p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @recoleccion.nombre %>
+</p>
+
+<p>
+  <b>Puerta:</b>
+  <%= @recoleccion.puerta %>
+</p>
+
+<p>
+  <b>Periodo:</b>
+  <%= @recoleccion.periodo %>
+</p>
+
+
+<%= link_to 'Edit', edit_recoleccion_path(@recoleccion) %> |
+<%= link_to 'Back', recoleccions_path %>
