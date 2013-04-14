@@ -23,7 +23,7 @@ development:
     host: localhost
 
   production:
-    adapter: pg
+    adapter: postgresql
     encoding: utf8
     reconnect: false
     database: DATABASE_PRODUCTION

@@ -3,15 +3,15 @@ class CreateRecoleccions < ActiveRecord::Migration
     create_table :recoleccions do |t|
       t.string :llegada_paradero
       t.string :salida_paradero
-      t.int :presonas_suben
-      t.int :personas_bajan
-      t.double :long
-      t.double :lat
+      t.integer :presonas_suben
+      t.integer :personas_bajan
+      t.float :long
+      t.float :lat
       t.string :recorrido
       t.string :patente
       t.string :nombre
-      t.int :puerta
-      t.int :periodo
+      t.integer :puerta
+      t.integer :periodo
 
       t.timestamps
     end
