@@ -51,6 +51,10 @@ public class Configuracion extends Activity {
 			}
 		});
 	}
+	
+	@Override
+	public void onBackPressed() {
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

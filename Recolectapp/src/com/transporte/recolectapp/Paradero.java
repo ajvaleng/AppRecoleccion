@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -94,12 +95,21 @@ public class Paradero extends Activity {
 			public void onClick(View v) {
 				
 				Paradero.this.tiempoSalida = new Date(ubicacion.getTime()); 
-				
+				int cantidadsube = Integer.parseInt(((EditText) findViewById(R.id.tbSuben)).getText().toString());
+				int cantidadbaja = Integer.parseInt(((EditText) findViewById(R.id.tbBajan)).getText().toString());
 				//ACA SE GUARDA LA INFORMACION EN LA BASE DE DATOS!!!
+				MySQLiteHelper db = new MySQLiteHelper(Paradero.this);
+				db.addData(Paradero.this.tiempoLlegada.toLocaleString(), Paradero.this.tiempoSalida.toLocaleString(),
+						cantidadsube, cantidadbaja, Paradero.this.ubicacion.getLongitude(), 
+						Paradero.this.ubicacion.getLatitude());
 				
 				startActivity(new Intent("com.transporte.ENMOVIMIENTO"));
 			}
 		});
+	}
+	
+	@Override
+	public void onBackPressed() {
 	}
 
 	@Override

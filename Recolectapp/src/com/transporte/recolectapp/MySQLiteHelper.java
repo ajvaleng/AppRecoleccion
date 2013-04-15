@@ -1,7 +1,29 @@
 package com.transporte.recolectapp;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -34,8 +56,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 	      + TABLE_INFO + "(" + COLUMN_ID
 	      + " integer primary key autoincrement, " + COLUMN_PUERTA
 	      + " integer not null, " + COLUMN_RECORRIDO
-	      + " text not null, " + COLUMN_PUERTA
-	      + " integer not null, " + COLUMN_NOMBRE
+	      + " text not null, " + COLUMN_NOMBRE
 	      + " text not null, " + COLUMN_PATENTE
 	      + " text not null, " + COLUMN_LLEGADA
 	      + " text not null, " + COLUMN_SALIDA
@@ -91,6 +112,105 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_INFO);
 	    onCreate(db);
 	  }
+	  
+	  public void enviarDatos()
+	  {
+		  
+		    // Select All Query
+		    String selectQuery = "SELECT  * FROM " + TABLE_INFO;
+		 
+		    SQLiteDatabase db = this.getWritableDatabase();
+		    Cursor cursor = db.rawQuery(selectQuery, null);
+		 
+		    // looping through all rows and adding to list
+			
+		    List<JSONObject> lista = new ArrayList<JSONObject>();
+		    if (cursor.moveToFirst()) {
+		        do {
+		    		String puerta  = cursor.getString(1);
+		    		String recorrido = cursor.getString(2);
+		    		String nombre = cursor.getString(3);
+		    		String patente = cursor.getString(4);
+		    		String Llegada = cursor.getString(5);
+		    		String Salida = cursor.getString(6);
+		    		String cantidadsube = cursor.getString(7);
+		    		String cantidadbaja = cursor.getString(8);
+		    		String latitud = cursor.getString(9);
+		    		String longitud = cursor.getString(10);
+		    		//String periodo = Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+1,Llegada.indexOf(" ")+2)) + 
+		    		//		(Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+4,Llegada.indexOf(" ")+)))"";
+		    		int hora = Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+1,Llegada.indexOf(" ")+2));
+		    		int minuto = Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+4,Llegada.indexOf(" ")+5));
+		    		String periodo = ((int)(hora/2)+(int)(minuto/30)) + "";
+		    				
+		            // Adding contact to list
+		            
+		            try {
+						lista.add(new JSONObject("{\"lat\":\""+ latitud + "\",\"long\":\"" + longitud + "\",\"llegada_paradero\":\""+
+						 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
+						 + "\",\"periodo\":\"" + periodo + "\",\"personas_suben\":\"" + cantidadsube + "\",\"personas_baja\":\"" +
+						 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}"));
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		            
+		          
+		         
+		        } while (cursor.moveToNext());
+		    }
+		 enviarPorJson(lista);
+		  
+	  }
+	  
+	  public void enviarPorJson(List<JSONObject> lista)
+	  {
+		  	//instantiates httpclient to make request
+		    HttpClient httpclient = new DefaultHttpClient();
+
+		    //url with the post data
+		    HttpPost httpost = new HttpPost("recolectserver.herokuapp.com/recoleccions");
+		    
+		    for(int i = 0; i < lista.size();i++)
+		    {
+		    	boolean correcto = true;
+			    //passes the results to a string builder/entity
+			    StringEntity se;
+				try {
+					se = new StringEntity(lista.get(i).toString());
+					//sets the post request as the resulting string
+				    httpost.setEntity(se);
+				    //se.setContentEncoding((Header) new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+				    //sets a request header so the page receving the request
+				    //will know what to do with it
+				    httpost.setHeader("Accept", "application/json");
+				    httpost.setHeader("Content-type", "application/json");
+		
+				    //Handles what is returned from the page 
+				    ResponseHandler responseHandler = new BasicResponseHandler();
+				    
+				    try {
+						HttpResponse response = httpclient.execute(httpost);
+					} catch (ClientProtocolException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						correcto = false;
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						correcto = false;
+					}
+				} catch (UnsupportedEncodingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					correcto = false;
+				}
+			    
+			    if (!correcto)
+			    	i --;
+		    }
+	  }
+
 	  
 	  public void borrarDatosYaEnviados(){
 		  SQLiteDatabase db = this.getWritableDatabase();
