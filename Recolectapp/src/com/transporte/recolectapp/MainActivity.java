@@ -14,23 +14,28 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        //esta actividad es solo un splash
+        
         Thread logoTimer = new Thread(){
 			@Override
 			public void run() {
 				
-				//CAMBIAR ESTO POR ENVIAR DATOS
-				// TODO Auto-generated method stub
 				try {
 					sleep(3000);
 					//Intent i = new Intent("android.intent.action.MAIN");
 					//startActivity(i);
-					startActivity(new Intent("com.transporte.CONFIGURACION"));
+					MySQLiteHelper db = new MySQLiteHelper(MainActivity.this);
+					//revisa si quedan datos por enviar primero.
+					if(db.quedanDatosPorEnviar())
+						startActivity(new Intent("com.transporte.EnviandoDatos"));
+					else
+						startActivity(new Intent("com.transporte.CONFIGURACION"));
 				} catch (InterruptedException e) {
 					// TODO: handle exception
 					e.printStackTrace();
 				}
 				finally{
-					//finish();
+					finish();
 				}
 			}
 		};

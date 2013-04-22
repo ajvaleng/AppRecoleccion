@@ -30,10 +30,10 @@ import android.util.Log;
 
 public class MySQLiteHelper extends SQLiteOpenHelper{
 	
-		private String patente;
-		private String recorrido;
-		private int puerta;
-		private String nombre;
+		static String patente;
+		static String recorrido;
+		static int puerta;
+		static String nombre;
 	
 		public static final String TABLE_INFO = "datos";
 		public static final String COLUMN_ID = "_id";
@@ -139,8 +139,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		    		String longitud = cursor.getString(10);
 		    		//String periodo = Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+1,Llegada.indexOf(" ")+2)) + 
 		    		//		(Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+4,Llegada.indexOf(" ")+)))"";
-		    		int hora = Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+1,Llegada.indexOf(" ")+2));
-		    		int minuto = Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+4,Llegada.indexOf(" ")+5));
+		    		String horaEnString = Llegada.substring(Llegada.lastIndexOf(" ")-8,Llegada.lastIndexOf(" ")-6);
+		    		if(horaEnString.indexOf(" ")!=-1)
+		    			horaEnString = horaEnString.substring(1,2);
+		    		
+		    		int hora = Integer.parseInt(horaEnString);
+		    		int minuto = Integer.parseInt(Llegada.substring(Llegada.lastIndexOf(" ")-4,Llegada.lastIndexOf(" ")-3));
 		    		String periodo = ((int)(hora/2)+(int)(minuto/30)) + "";
 		    				
 		            // Adding contact to list
@@ -159,17 +163,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		         
 		        } while (cursor.moveToNext());
 		    }
-		 enviarPorJson(lista);
-		  
+		 enviarPorJson(lista,db);
 	  }
 	  
-	  public void enviarPorJson(List<JSONObject> lista)
+	  public void enviarPorJson(List<JSONObject> lista, SQLiteDatabase db)
 	  {
 		  	//instantiates httpclient to make request
 		    HttpClient httpclient = new DefaultHttpClient();
 
 		    //url with the post data
-		    HttpPost httpost = new HttpPost("recolectserver.herokuapp.com/recoleccions");
+		    HttpPost httpost = new HttpPost("http://recolectserver.herokuapp.com/recoleccions");
 		    
 		    for(int i = 0; i < lista.size();i++)
 		    {
@@ -184,6 +187,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 				    //sets a request header so the page receving the request
 				    //will know what to do with it
 				    httpost.setHeader("Accept", "application/json");
+				    
 				    httpost.setHeader("Content-type", "application/json");
 		
 				    //Handles what is returned from the page 
@@ -191,6 +195,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 				    
 				    try {
 						HttpResponse response = httpclient.execute(httpost);
+						//response.getParams()
+						//SIESSQUE RESPONSE ESTA BUENO!!!!
+						//if(response.getHeader){
+							db.delete(this.DATABASE_NAME, this.COLUMN_LLEGADA+"="+lista.get(i).getString("llegada_paradero"), null);
+				    	//}
 					} catch (ClientProtocolException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -199,6 +208,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 						correcto = false;
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				} catch (UnsupportedEncodingException e1) {
 					// TODO Auto-generated catch block
@@ -210,7 +222,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 			    	i --;
 		    }
 	  }
-
+	  
+	  public boolean quedanDatosPorEnviar()
+	  {
+		  String selectQuery = "SELECT  * FROM " + TABLE_INFO;
+			 
+		    SQLiteDatabase db = this.getWritableDatabase();
+		    Cursor cursor = db.rawQuery(selectQuery, null);
+		 
+		    // looping through all rows and adding to list
+			
+		    if (cursor.moveToFirst()) {
+		    	return true;
+		    }
+		    return false;
+	  }
 	  
 	  public void borrarDatosYaEnviados(){
 		  SQLiteDatabase db = this.getWritableDatabase();

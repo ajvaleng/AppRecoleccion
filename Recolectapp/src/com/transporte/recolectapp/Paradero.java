@@ -1,6 +1,7 @@
 package com.transporte.recolectapp;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 import android.location.Criteria;
 import android.location.Location;
@@ -17,8 +18,8 @@ import android.widget.EditText;
 
 public class Paradero extends Activity {
 
-	Date tiempoLlegada;
-	Date tiempoSalida;
+	String tiempoLlegada;
+	String tiempoSalida;
 	Location ubicacion;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +32,10 @@ public class Paradero extends Activity {
         criteria.setBearingRequired(false);
         criteria.setCostAllowed(true);
         criteria.setPowerRequirement(Criteria.POWER_LOW);
+        //Acordarse de descomentar
         String bestProvider = locationManager.getBestProvider(criteria, true);
 		ubicacion = locationManager.getLastKnownLocation(bestProvider);
-		this.tiempoLlegada = new Date(ubicacion.getTime()); 
+		tiempoLlegada = Calendar.getInstance().getTime().toLocaleString();
 		
 		Button subida = (Button) findViewById(R.id.btSuben);
         subida.setOnClickListener(new View.OnClickListener() {
@@ -94,14 +96,18 @@ public class Paradero extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				Paradero.this.tiempoSalida = new Date(ubicacion.getTime()); 
+				Paradero.this.tiempoSalida = Calendar.getInstance().getTime().toLocaleString();
 				int cantidadsube = Integer.parseInt(((EditText) findViewById(R.id.tbSuben)).getText().toString());
 				int cantidadbaja = Integer.parseInt(((EditText) findViewById(R.id.tbBajan)).getText().toString());
 				//ACA SE GUARDA LA INFORMACION EN LA BASE DE DATOS!!!
 				MySQLiteHelper db = new MySQLiteHelper(Paradero.this);
-				db.addData(Paradero.this.tiempoLlegada.toLocaleString(), Paradero.this.tiempoSalida.toLocaleString(),
+				//ACORDARSE DE BORRAR
+				db.addData(Paradero.this.tiempoLlegada, Paradero.this.tiempoSalida,
 						cantidadsube, cantidadbaja, Paradero.this.ubicacion.getLongitude(), 
 						Paradero.this.ubicacion.getLatitude());
+				
+				//db.addData(Paradero.this.tiempoLlegada, Paradero.this.tiempoSalida,	cantidadsube, 
+				//			cantidadbaja, 4, 5);
 				
 				startActivity(new Intent("com.transporte.ENMOVIMIENTO"));
 			}

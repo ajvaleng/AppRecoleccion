@@ -8,5 +8,6 @@
     <string name="title_activity_paradero">Paradero</string>
     <string name="title_activity_enviando_datos">EnviandoDatos</string>
     <string name="title_activity_configuracion">Configuracion</string>
+    <string name="servidor">http://recolectserver.herokuapp.com/recoleccions</string>
 
 </resources>

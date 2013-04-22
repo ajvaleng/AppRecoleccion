@@ -24,13 +24,10 @@ public class EnviandoDatos extends Activity {
 				//db.enviarDatos();
 				
 				try {
-					sleep(2000);
+					db.enviarDatos();
 					//Intent i = new Intent("android.intent.action.MAIN");
 					//startActivity(i);
-					startActivity(new Intent("com.transporte.ENMOVIMIENTO"));
-				} catch (InterruptedException e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					startActivity(new Intent("com.transporte.CONFIGURACION"));
 				}
 				finally{
 					//finish();
