@@ -30,7 +30,7 @@ public class EnviandoDatos extends Activity {
 					startActivity(new Intent("com.transporte.CONFIGURACION"));
 				}
 				finally{
-					//finish();
+					finish();
 				}
 			}
 		};

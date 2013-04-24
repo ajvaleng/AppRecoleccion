@@ -18,6 +18,7 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -150,10 +151,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		            // Adding contact to list
 		            
 		            try {
-						lista.add(new JSONObject("{\"lat\":\""+ latitud + "\",\"long\":\"" + longitud + "\",\"llegada_paradero\":\""+
-						 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
-						 + "\",\"periodo\":\"" + periodo + "\",\"personas_suben\":\"" + cantidadsube + "\",\"personas_baja\":\"" +
-						 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}"));
+						
+						enviarPorJson(new JSONObject("{\"lat\":\""+ latitud + "\",\"long\":\"" + longitud + "\",\"llegada_paradero\":\""+
+								 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
+								 + "\",\"periodo\":\"" + periodo + "\",\"personas_suben\":\"" + cantidadsube + "\",\"personas_baja\":\"" +
+								 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}"));
+						db.delete(this.TABLE_INFO, this.COLUMN_ID + "=" + cursor.getString(0), null);
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -163,24 +166,24 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		         
 		        } while (cursor.moveToNext());
 		    }
-		 enviarPorJson(lista,db);
+
 	  }
 	  
-	  public void enviarPorJson(List<JSONObject> lista, SQLiteDatabase db)
+	  public void enviarPorJson(JSONObject json)
 	  {
 		  	//instantiates httpclient to make request
 		    HttpClient httpclient = new DefaultHttpClient();
 
 		    //url with the post data
 		    HttpPost httpost = new HttpPost("http://recolectserver.herokuapp.com/recoleccions");
-		    
-		    for(int i = 0; i < lista.size();i++)
+		    boolean correcto = false;
+		    while (!correcto)
 		    {
-		    	boolean correcto = true;
+		    	correcto = true;
 			    //passes the results to a string builder/entity
 			    StringEntity se;
 				try {
-					se = new StringEntity(lista.get(i).toString());
+					se = new StringEntity(json.toString());
 					//sets the post request as the resulting string
 				    httpost.setEntity(se);
 				    //se.setContentEncoding((Header) new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
@@ -191,14 +194,19 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 				    httpost.setHeader("Content-type", "application/json");
 		
 				    //Handles what is returned from the page 
-				    ResponseHandler responseHandler = new BasicResponseHandler();
+	
 				    
 				    try {
 						HttpResponse response = httpclient.execute(httpost);
+						String respuesta = EntityUtils.toString(response.getEntity());
+						if(respuesta == "" && respuesta == "")
+							correcto = false;
 						//response.getParams()
 						//SIESSQUE RESPONSE ESTA BUENO!!!!
 						//if(response.getHeader){
-							db.delete(this.DATABASE_NAME, this.COLUMN_LLEGADA+"="+lista.get(i).getString("llegada_paradero"), null);
+							//db.execSQL("DELETE FROM "+this.DATABASE_NAME+" WHERE usuario='usu1' ");
+	
+							//db.delete(this.TABLE_INFO, this.COLUMN_LLEGADA+"="+json.getString("llegada_paradero"), null);
 				    	//}
 					} catch (ClientProtocolException e) {
 						// TODO Auto-generated catch block
@@ -208,19 +216,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 						correcto = false;
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
 					}
-				} catch (UnsupportedEncodingException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					correcto = false;
-				}
-			    
-			    if (!correcto)
-			    	i --;
-		    }
+					} catch (UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						correcto = false;
+					}
+		  		}
+			
 	  }
 	  
 	  public boolean quedanDatosPorEnviar()

@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 					MySQLiteHelper db = new MySQLiteHelper(MainActivity.this);
 					//revisa si quedan datos por enviar primero.
 					if(db.quedanDatosPorEnviar())
-						startActivity(new Intent("com.transporte.EnviandoDatos"));
+						startActivity(new Intent("com.transporte.ENVIANDODATOS"));
 					else
 						startActivity(new Intent("com.transporte.CONFIGURACION"));
 				} catch (InterruptedException e) {
