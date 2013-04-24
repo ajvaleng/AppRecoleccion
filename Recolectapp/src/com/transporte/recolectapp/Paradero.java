@@ -35,7 +35,10 @@ public class Paradero extends Activity {
         //Acordarse de descomentar
         String bestProvider = locationManager.getBestProvider(criteria, true);
 		ubicacion = locationManager.getLastKnownLocation(bestProvider);
-		tiempoLlegada = Calendar.getInstance().getTime().toLocaleString();
+		java.util.Date dt = Calendar.getInstance().getTime();
+		tiempoLlegada = "/date("+Date.UTC(dt.getYear(), dt.getMonth(), dt.getDay(), dt.getHours(),dt.getMinutes(), dt.getSeconds())+")/";
+
+
 		
 		Button subida = (Button) findViewById(R.id.btSuben);
         subida.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +98,9 @@ public class Paradero extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				
-				Paradero.this.tiempoSalida = Calendar.getInstance().getTime().toLocaleString();
+				java.util.Date dt = Calendar.getInstance().getTime();
+				Paradero.this.tiempoSalida = "/date("+Date.UTC(dt.getYear(), dt.getMonth(), dt.getDay(), dt.getHours(),dt.getMinutes(), dt.getSeconds())+")/";
+
 				int cantidadsube = Integer.parseInt(((EditText) findViewById(R.id.tbSuben)).getText().toString());
 				int cantidadbaja = Integer.parseInt(((EditText) findViewById(R.id.tbBajan)).getText().toString());
 				//ACA SE GUARDA LA INFORMACION EN LA BASE DE DATOS!!!

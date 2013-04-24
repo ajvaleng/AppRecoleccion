@@ -17,21 +17,15 @@ public class EnviandoDatos extends Activity {
 			@Override
 			public void run() {
 				
-				//CAMBIAR ESTO POR ENVIAR DATOS
+
 				// TODO Auto-generated method stub
 				MySQLiteHelper db = new MySQLiteHelper(EnviandoDatos.this);
-				//DESCOMENTAR PROXIMA LINEA PARA MANDAR DATOS
-				//db.enviarDatos();
-				
-				try {
-					db.enviarDatos();
-					//Intent i = new Intent("android.intent.action.MAIN");
-					//startActivity(i);
-					startActivity(new Intent("com.transporte.CONFIGURACION"));
-				}
-				finally{
-					finish();
-				}
+			
+				db.enviarDatos();
+				startActivity(new Intent("com.transporte.CONFIGURACION"));
+
+				finish();
+
 			}
 		};
 		logoTimer.start();

@@ -140,21 +140,22 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		    		String longitud = cursor.getString(10);
 		    		//String periodo = Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+1,Llegada.indexOf(" ")+2)) + 
 		    		//		(Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+4,Llegada.indexOf(" ")+)))"";
-		    		String horaEnString = Llegada.substring(Llegada.lastIndexOf(" ")-8,Llegada.lastIndexOf(" ")-6);
-		    		if(horaEnString.indexOf(" ")!=-1)
-		    			horaEnString = horaEnString.substring(1,2);
+		    		//String horaEnString = Llegada.substring(Llegada.lastIndexOf(" ")-8,Llegada.lastIndexOf(" ")-6);
+		    		//if(horaEnString.indexOf(" ")!=-1)
+		    		//	horaEnString = horaEnString.substring(1,2);
 		    		
-		    		int hora = Integer.parseInt(horaEnString);
-		    		int minuto = Integer.parseInt(Llegada.substring(Llegada.lastIndexOf(" ")-4,Llegada.lastIndexOf(" ")-3));
-		    		String periodo = ((int)(hora/2)+(int)(minuto/30)) + "";
-		    				
+		    		//int hora = Integer.parseInt(horaEnString);
+		    		//int minuto = Integer.parseInt(Llegada.substring(Llegada.lastIndexOf(" ")-4,Llegada.lastIndexOf(" ")-3));
+		    		//String periodo = ((int)(hora/2)+(int)(minuto/30)) + "";
+		    		String periodo = "null";
+		    		
 		            // Adding contact to list
 		            
 		            try {
 						
 						enviarPorJson(new JSONObject("{\"lat\":\""+ latitud + "\",\"long\":\"" + longitud + "\",\"llegada_paradero\":\""+
 								 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
-								 + "\",\"periodo\":\"" + periodo + "\",\"personas_suben\":\"" + cantidadsube + "\",\"personas_baja\":\"" +
+								 + "\",\"periodo\":\"" + periodo + "\",\"presonas_suben\":\"" + cantidadsube + "\",\"personas_bajan\":\"" +
 								 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}"));
 						db.delete(this.TABLE_INFO, this.COLUMN_ID + "=" + cursor.getString(0), null);
 					} catch (JSONException e) {

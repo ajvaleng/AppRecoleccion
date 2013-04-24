@@ -18,7 +18,7 @@ public class EnMovimiento extends Activity {
 		Button llegadaParadero = (Button) findViewById(R.id.btLlegadaParadero);
         llegadaParadero.setOnClickListener(new View.OnClickListener() {
 			
-        	//falta configurar click para terminar recoleccion
+ 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
