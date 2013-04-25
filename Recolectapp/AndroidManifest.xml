@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.transporte.recolectapp"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" 
+    android:screenOrientation="portrait">
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -27,7 +28,8 @@
         </activity>
         <activity
             android:name="com.transporte.recolectapp.EnMovimiento"
-            android:label="@string/title_activity_en_movimiento" >
+            android:label="@string/title_activity_en_movimiento" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.transporte.ENMOVIMIENTO" />
 
@@ -36,7 +38,8 @@
         </activity>
         <activity
             android:name="com.transporte.recolectapp.Paradero"
-            android:label="@string/title_activity_paradero" >
+            android:label="@string/title_activity_paradero" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.transporte.PARADERO" />
 
@@ -45,7 +48,8 @@
         </activity>
         <activity
             android:name="com.transporte.recolectapp.EnviandoDatos"
-            android:label="@string/title_activity_enviando_datos" >
+            android:label="@string/title_activity_enviando_datos"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.transporte.ENVIANDODATOS" />
 
@@ -54,7 +58,8 @@
         </activity>
         <activity 
             android:name="com.transporte.recolectapp.Configuracion"
-            android:label="@string/title_activity_configuracion" >
+            android:label="@string/title_activity_configuracion" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.transporte.CONFIGURACION" />
 

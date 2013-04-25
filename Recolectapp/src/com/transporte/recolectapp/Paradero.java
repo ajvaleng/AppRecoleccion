@@ -36,8 +36,10 @@ public class Paradero extends Activity {
         String bestProvider = locationManager.getBestProvider(criteria, true);
 		ubicacion = locationManager.getLastKnownLocation(bestProvider);
 		java.util.Date dt = Calendar.getInstance().getTime();
-		tiempoLlegada = "/date("+Date.UTC(dt.getYear(), dt.getMonth(), dt.getDay(), dt.getHours(),dt.getMinutes(), dt.getSeconds())+")/";
 
+		tiempoLlegada = dt.toLocaleString();
+		
+		
 
 		
 		Button subida = (Button) findViewById(R.id.btSuben);
@@ -99,7 +101,7 @@ public class Paradero extends Activity {
 			@Override
 			public void onClick(View v) {
 				java.util.Date dt = Calendar.getInstance().getTime();
-				Paradero.this.tiempoSalida = "/date("+Date.UTC(dt.getYear(), dt.getMonth(), dt.getDay(), dt.getHours(),dt.getMinutes(), dt.getSeconds())+")/";
+				Paradero.this.tiempoSalida = dt.toLocaleString();
 
 				int cantidadsube = Integer.parseInt(((EditText) findViewById(R.id.tbSuben)).getText().toString());
 				int cantidadbaja = Integer.parseInt(((EditText) findViewById(R.id.tbBajan)).getText().toString());
