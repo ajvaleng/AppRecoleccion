@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="BreadcrumbItemDropDown">
+	</section>
 	<section name="org.eclipse.debug.ui.SELECT_LAUNCH_SHORTCUT_DIALOG">
 		<item value="270" key="DIALOG_WIDTH"/>
 		<item value="435" key="DIALOG_HEIGHT"/>

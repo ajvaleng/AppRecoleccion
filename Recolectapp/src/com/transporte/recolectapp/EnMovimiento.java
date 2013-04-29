@@ -36,7 +36,7 @@ public class EnMovimiento extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				Intent EnviarDatos = new Intent("com.transporte.ENVIANDODATOS");
+				Intent EnviarDatos = new Intent("com.transporte.BOTONESINICIALES");
 				
 				startActivity(EnviarDatos);
 			}

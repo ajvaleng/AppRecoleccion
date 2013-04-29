@@ -16,15 +16,17 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="108dp"
+        android:background="@drawable/graybutton"
         android:text="Llegue a Paradero" />
 
     <Button
         android:id="@+id/btFinalizarRecoleccion"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/btLlegadaParadero"
         android:layout_marginBottom="86dp"
+        android:background="@drawable/graybutton"
         android:text="Finalizar Recoleccion" />
 
 </RelativeLayout>

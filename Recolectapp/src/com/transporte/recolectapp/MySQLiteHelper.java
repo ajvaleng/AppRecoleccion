@@ -35,6 +35,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		static String recorrido;
 		static int puerta;
 		static String nombre;
+		static float idRecoleccion;
 	
 		public static final String TABLE_INFO = "datos";
 		public static final String COLUMN_ID = "_id";
@@ -48,6 +49,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		public static final String COLUMN_CANTIDAD_BAJA = "cantidadbajada";
 		public static final String COLUMN_LATITUD = "latitud";
 		public static final String COLUMN_LONGITUD = "longitud";
+		public static final String COLUMN_IDRECOLECCION = "idrecoleccion";
 		
 		private static final String DATABASE_NAME = "recoleccion.db";
 		private static final int DATABASE_VERSION = 1;
@@ -59,13 +61,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 	      + " integer not null, " + COLUMN_RECORRIDO
 	      + " text not null, " + COLUMN_NOMBRE
 	      + " text not null, " + COLUMN_PATENTE
-	      + " text not null, " + COLUMN_LLEGADA
+	      + " real not null, " + COLUMN_LLEGADA
 	      + " text not null, " + COLUMN_SALIDA
 	      + " text not null, " + COLUMN_CANTIDAD_SUBE
 	      + " integer not null, " + COLUMN_CANTIDAD_BAJA
 	      + " integer not null, " + COLUMN_LATITUD
 	      + " real not null, " + COLUMN_LONGITUD
-	      + " real not null" + ");";
+	      + " real not null, " + COLUMN_IDRECOLECCION
+	      + " text not null" +");";
 
 	  public MySQLiteHelper(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -76,11 +79,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 	    database.execSQL(DATABASE_CREATE);
 	  }
 	  
-	  public void definirAtributosComunes(String nombre, String patente, int puerta, String recorrido){
+	  public void definirAtributosComunes(String nombre, String patente, int puerta, String recorrido,float id){
 		  this.nombre = nombre;
 		  this.puerta = puerta;
 		  this.recorrido = recorrido;
 		  this.patente = patente;
+		  this.idRecoleccion = id;
 		  
 	  }
 	  
@@ -99,6 +103,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		    values.put(COLUMN_PUERTA, puerta);
 		    values.put(COLUMN_RECORRIDO, recorrido);
 		    values.put(COLUMN_SALIDA, horasalida);
+		    values.put(COLUMN_IDRECOLECCION, idRecoleccion);
 		    
 		    // Inserting Row
 		    db.insert(TABLE_INFO, null, values);
@@ -119,15 +124,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		  
 		    // Select All Query
 		    String selectQuery = "SELECT  * FROM " + TABLE_INFO;
-		 
+		    String textToJson = "{\"Recoleccion\":[";
+		    ArrayList<Integer> datosPorBorrar = new ArrayList<Integer>();
 		    SQLiteDatabase db = this.getWritableDatabase();
 		    Cursor cursor = db.rawQuery(selectQuery, null);
 		 
 		    // looping through all rows and adding to list
-			
+			String anterior = "";
 		    List<JSONObject> lista = new ArrayList<JSONObject>();
 		    if (cursor.moveToFirst()) {
 		        do {
+		        	datosPorBorrar.add(cursor.getInt((0)));
 		    		String puerta  = cursor.getString(1);
 		    		String recorrido = cursor.getString(2);
 		    		String nombre = cursor.getString(3);
@@ -138,6 +145,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		    		String cantidadbaja = cursor.getString(8);
 		    		String latitud = cursor.getString(9);
 		    		String longitud = cursor.getString(10);
+		    		String actual = cursor.getString(11);
 		    		//String periodo = Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+1,Llegada.indexOf(" ")+2)) + 
 		    		//		(Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+4,Llegada.indexOf(" ")+)))"";
 		    		//String horaEnString = Llegada.substring(Llegada.lastIndexOf(" ")-8,Llegada.lastIndexOf(" ")-6);
@@ -151,27 +159,68 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		    		
 		            // Adding contact to list
 		            
-		            try {
+		    		if((actual != anterior && anterior != ""))
+		    		{
+		    			boolean correcto = false;
+		    			while(!correcto)
+		    			{
+			    			try {
+								enviarPorJson(new JSONObject(textToJson+"]}"));
+								borrarDatos(datosPorBorrar, db);
+								correcto = true;
+								anterior = "";
+								
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+		    			}
+		    			datosPorBorrar = new ArrayList<Integer>();
+		    			textToJson = "{\"Recoleccion\":[";
+		    		}
+		    		else if(anterior != "")
+		    			textToJson += ",";
+		    		
+
 						
-						enviarPorJson(new JSONObject("{\"lat\":\""+ latitud + "\",\"long\":\"" + longitud + "\",\"llegada_paradero\":\""+
-								 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
-								 + "\",\"periodo\":\"" + periodo + "\",\"presonas_suben\":\"" + cantidadsube + "\",\"personas_bajan\":\"" +
-								 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}"));
-						db.delete(this.TABLE_INFO, this.COLUMN_ID + "=" + cursor.getString(0), null);
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+						//enviarPorJson(new JSONObject("{\"latitude\":\""+ latitud + "\",\"longitude\":\"" + longitud + "\",\"llegada_paradero\":\""+
+						//		 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
+						//		 + "\",\"periodo\":\"" + periodo + "\",\"presonas_suben\":\"" + cantidadsube + "\",\"personas_bajan\":\"" +
+						//		 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}"));
+		            	textToJson +="{\"latitude\":\""+ latitud + "\",\"longitude\":\"" + longitud + "\",\"llegada_paradero\":\""+
+										 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
+										 + "\",\"periodo\":\"" + periodo + "\",\"presonas_suben\":\"" + cantidadsube + "\",\"personas_bajan\":\"" +
+										 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}";
+								
+//						db.delete(this.TABLE_INFO, this.COLUMN_ID + "=" + cursor.getString(0), null);
 		            
-		          
-		         
+		         if(cursor.isLast())
+		         {
+		        	 boolean correcto = false;
+		    			while(!correcto)
+		    			{
+			    			try {
+								enviarPorJson(new JSONObject(textToJson+"]}"));
+								borrarDatos(datosPorBorrar, db);
+								correcto = true;
+								anterior = "";
+								
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+		    			}
+		         }
+		            	
 		        } while (cursor.moveToNext());
+		        
 		    }
 
 	  }
 	  
 	  public void enviarPorJson(JSONObject json)
 	  {
+		  
 		  	//instantiates httpclient to make request
 		    HttpClient httpclient = new DefaultHttpClient();
 
@@ -180,7 +229,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		    boolean correcto = false;
 		    while (!correcto)
 		    {
-		    	correcto = true;
+		    	correcto = false;
 			    //passes the results to a string builder/entity
 			    StringEntity se;
 				try {
@@ -198,17 +247,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 	
 				    
 				    try {
-						HttpResponse response = httpclient.execute(httpost);
-						String respuesta = EntityUtils.toString(response.getEntity());
-						if(respuesta == "" && respuesta == "")
-							correcto = false;
-						//response.getParams()
-						//SIESSQUE RESPONSE ESTA BUENO!!!!
-						//if(response.getHeader){
-							//db.execSQL("DELETE FROM "+this.DATABASE_NAME+" WHERE usuario='usu1' ");
-	
-							//db.delete(this.TABLE_INFO, this.COLUMN_LLEGADA+"="+json.getString("llegada_paradero"), null);
-				    	//}
+				    	while(!correcto)
+				    	{
+							HttpResponse response = httpclient.execute(httpost);
+							String respuesta = EntityUtils.toString(response.getEntity());
+							if(respuesta != "" && respuesta != null)
+								if(respuesta.indexOf(" 404")==-1)
+										correcto = true;
+							//response.getParams()
+							//SIESSQUE RESPONSE ESTA BUENO!!!!
+							//if(response.getHeader){
+								//db.execSQL("DELETE FROM "+this.DATABASE_NAME+" WHERE usuario='usu1' ");
+		
+								//db.delete(this.TABLE_INFO, this.COLUMN_LLEGADA+"="+json.getString("llegada_paradero"), null);
+					    	//}
+				    	}
 					} catch (ClientProtocolException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -225,6 +278,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 					}
 		  		}
 			
+	  }
+	  
+	  public void borrarDatos(ArrayList<Integer> datosPorBorrar, SQLiteDatabase db)
+	  {
+		  
+		  for(int i = 0; i<datosPorBorrar.size();i++)
+		  {
+			  db.delete(TABLE_INFO, COLUMN_ID + "=" + datosPorBorrar.get(i), null);
+		  }
+		  
 	  }
 	  
 	  public boolean quedanDatosPorEnviar()

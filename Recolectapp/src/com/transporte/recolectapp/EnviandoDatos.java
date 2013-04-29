@@ -22,7 +22,7 @@ public class EnviandoDatos extends Activity {
 				MySQLiteHelper db = new MySQLiteHelper(EnviandoDatos.this);
 			
 				db.enviarDatos();
-				startActivity(new Intent("com.transporte.CONFIGURACION"));
+				startActivity(new Intent("com.transporte.BOTONESINICIALES"));
 
 				finish();
 

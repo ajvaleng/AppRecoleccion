@@ -9,18 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Paradero" >
 
-    <Button
-        android:id="@+id/btSuben"
-        android:layout_width="140dp"
-        android:layout_height="150dp"
-        android:layout_alignBaseline="@+id/btBajan"
-        android:layout_alignBottom="@+id/btBajan"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/flechaarriba"
-        android:text="Suben"
-        android:textColor="#FFFFFF" 
-        android:textStyle="bold"/>
-
     <EditText
         android:id="@+id/tbSuben"
         android:layout_width="60dp"
@@ -34,58 +22,73 @@
         android:enabled="false"
         android:text="0" />
 
-
-    <Button
-        android:id="@+id/btBajan"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="111dp"
-        android:layout_toLeftOf="@+id/btSuben"
-        android:background="@drawable/flechaabajo"
-        android:text="Bajan"
-        android:textColor="#FFFFFF" 
-        android:textStyle="bold"/>
-
-    <Button
-        android:id="@+id/btSalidaParadero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btBajanCorregir"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:text="Salí del Paradero" />
-
-    <Button
-        android:id="@+id/btSubenCorregir"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/btSuben"
-        android:layout_below="@+id/btSuben"
-        android:layout_marginTop="31dp"
-        android:text="-"
-        android:textSize="30sp" />
-
     <EditText
         android:id="@+id/tbBajan"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/btBajan"
-        android:layout_marginRight="44dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginRight="42dp"
         android:ems="10"
         android:enabled="false"
-        android:text="0" 
-        android:textColor="#FFFFFF"/>
+        android:text="0"
+        android:textColor="#FFFFFF" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btSalidaParadero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/graybutton"
+        android:text="Salí del Paradero" />
 
     <Button
         android:id="@+id/btBajanCorregir"
         android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btSubenCorregir"
-        android:layout_toLeftOf="@+id/tbBajan"
+        android:layout_height="40dp"
+        android:layout_above="@+id/btSalidaParadero"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="29dp"
+        android:background="@drawable/graybuttonmd"
         android:text="-"
         android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btSubenCorregir"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/btBajanCorregir"
+        android:layout_alignBottom="@+id/btBajanCorregir"
+        android:layout_toRightOf="@+id/tbSuben"
+        android:background="@drawable/graybuttonmd"
+        android:text="-"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btSuben"
+        android:layout_width="140dp"
+        android:layout_height="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/flechaarriba"
+        android:text="Suben"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btBajan"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignBaseline="@+id/btSuben"
+        android:layout_alignBottom="@+id/btSuben"
+        android:layout_alignLeft="@+id/btBajanCorregir"
+        android:background="@drawable/flechaabajo"
+        android:text="Bajan"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
 </RelativeLayout>

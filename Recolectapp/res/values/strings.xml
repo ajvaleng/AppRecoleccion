@@ -9,5 +9,6 @@
     <string name="title_activity_enviando_datos">EnviandoDatos</string>
     <string name="title_activity_configuracion">Configuracion</string>
     <string name="servidor">http://recolectserver.herokuapp.com/recoleccions</string>
+    <string name="title_activity_botones_iniciales">BotonesIniciales</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package com.transporte.recolectapp;
 
+import java.util.Random;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -37,7 +39,8 @@ public class Configuracion extends Activity {
 					int puerta = Integer.parseInt(tbPuerta.getText().toString());
 					if(nombre != "" && patente != "" && recorrido != "")
 					{
-						db.definirAtributosComunes(nombre, patente, puerta, recorrido);
+						Random a = new Random();
+						db.definirAtributosComunes(nombre, patente, puerta, recorrido,a.nextFloat());
 						startActivity(new Intent("com.transporte.ENMOVIMIENTO"));
 					}
 					else
@@ -52,9 +55,7 @@ public class Configuracion extends Activity {
 		});
 	}
 	
-	@Override
-	public void onBackPressed() {
-	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

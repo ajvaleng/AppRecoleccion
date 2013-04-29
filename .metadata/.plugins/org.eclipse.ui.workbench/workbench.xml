@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="75" version="2.0">
+<workbench progressCount="69" version="2.0">
 <workbenchAdvisor/>
-<window height="768" maximized="true" width="1024" x="57" y="0">
+<window height="768" maximized="true" width="1024" x="48" y="9">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
-<itemSize x="160"/>
+<itemSize x="165"/>
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
@@ -17,17 +17,17 @@
 <coolItem id="org.eclipse.wst.server.ui.internal.webbrowser.actionSet" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="org.eclipse.wst.ws.explorer.explorer" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="com.android.ide.eclipse.editors.CommonXmlEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1366771060491" focus="true" label="Workspace - Java EE">
+<page aggregateWorkingSetId="Aggregate for window 1366771060491" focus="true" label="Workspace - Debug">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
@@ -38,10 +38,20 @@
 <part id="2"/>
 <part id="3"/>
 <part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_botones_iniciales.xml" partName="activity_botones_iniciales.xml" path="C:/Users/diego/AppRecoleccion/Recolectapp/res/layout/activity_botones_iniciales.xml" title="activity_botones_iniciales.xml" tooltip="Recolectapp/res/layout/activity_botones_iniciales.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/res/layout/activity_botones_iniciales.xml"/>
+</editor>
 <editor id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_configuracion.xml" partName="activity_configuracion.xml" path="C:/Users/diego/AppRecoleccion/Recolectapp/res/layout/activity_configuracion.xml" title="activity_configuracion.xml" tooltip="Recolectapp/res/layout/activity_configuracion.xml" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/res/layout/activity_configuracion.xml"/>
 </editor>
@@ -51,11 +61,36 @@
 <editor id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_enviando_datos.xml" partName="activity_enviando_datos.xml" path="C:/Users/diego/AppRecoleccion/Recolectapp/res/layout/activity_enviando_datos.xml" title="activity_enviando_datos.xml" tooltip="Recolectapp/res/layout/activity_enviando_datos.xml" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/res/layout/activity_enviando_datos.xml"/>
 </editor>
-<editor activePart="true" focus="true" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_main.xml" partName="activity_main.xml" path="C:/Users/diego/AppRecoleccion/Recolectapp/res/layout/activity_main.xml" title="activity_main.xml" tooltip="Recolectapp/res/layout/activity_main.xml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/res/layout/activity_main.xml"/>
-</editor>
 <editor id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_paradero.xml" partName="activity_paradero.xml" path="C:/Users/diego/AppRecoleccion/Recolectapp/res/layout/activity_paradero.xml" title="activity_paradero.xml" tooltip="Recolectapp/res/layout/activity_paradero.xml" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/res/layout/activity_paradero.xml"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BotonesIniciales.java" partName="BotonesIniciales.java" path="C:/Users/diego/AppRecoleccion/Recolectapp/src/com/transporte/recolectapp/BotonesIniciales.java" title="BotonesIniciales.java" tooltip="Recolectapp/src/com/transporte/recolectapp/BotonesIniciales.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/src/com/transporte/recolectapp/BotonesIniciales.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="850" selectionTopPixel="97"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Configuracion.java" partName="Configuracion.java" path="C:/Users/diego/AppRecoleccion/Recolectapp/src/com/transporte/recolectapp/Configuracion.java" title="Configuracion.java" tooltip="Recolectapp/src/com/transporte/recolectapp/Configuracion.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/src/com/transporte/recolectapp/Configuracion.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1630" selectionTopPixel="170"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MySQLiteHelper.java" partName="MySQLiteHelper.java" path="C:/Users/diego/AppRecoleccion/Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java" title="MySQLiteHelper.java" tooltip="Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10080" selectionTopPixel="3135"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Paradero.java" partName="Paradero.java" path="C:/Users/diego/AppRecoleccion/Recolectapp/src/com/transporte/recolectapp/Paradero.java" title="Paradero.java" tooltip="Recolectapp/src/com/transporte/recolectapp/Paradero.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/src/com/transporte/recolectapp/Paradero.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1393" selectionTopPixel="315"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EnMovimiento.java" partName="EnMovimiento.java" path="C:/Users/diego/AppRecoleccion/Recolectapp/src/com/transporte/recolectapp/EnMovimiento.java" title="EnMovimiento.java" tooltip="Recolectapp/src/com/transporte/recolectapp/EnMovimiento.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/src/com/transporte/recolectapp/EnMovimiento.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EnviandoDatos.java" partName="EnviandoDatos.java" path="C:/Users/diego/AppRecoleccion/Recolectapp/src/com/transporte/recolectapp/EnviandoDatos.java" title="EnviandoDatos.java" tooltip="Recolectapp/src/com/transporte/recolectapp/EnviandoDatos.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Recolectapp/src/com/transporte/recolectapp/EnviandoDatos.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="435" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.ClassFileEditor" name="JSONObject.class" partName="JSONObject.class" title="JSONObject.class" tooltip="org.json.JSONObject" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=Recolectapp/C:\/android\/android-sdk\/platforms\/android-8\/android.jar&lt;org.json(JSONObject.class"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -78,9 +113,6 @@
 </view>
 <view id="org.eclipse.ui.views.AllMarkersView" partName="Markers">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.allSeverityField" categoryGroup="org.eclipse.ui.ide.type" markerContentGenerator="org.eclipse.ui.ide.allMarkersGenerator" partName="Markers">
-<expanded>
-<category IMemento.internal.id="Android AAPT Problem"/>
-</expanded>
 <columnWidths org.eclipse.ui.ide.allSeverityField="300" org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="165"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.allSeverityField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -92,9 +124,24 @@
 <view id="com.android.ide.eclipse.ddms.views.LogCatView" partName="LogCat">
 <viewState/>
 </view>
-<view id="org.eclipse.wst.common.snippets.internal.ui.SnippetsView" partName="Snippets"/>
-<view id="org.eclipse.ui.views.PropertySheet" partName="Properties"/>
-<view id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" partName="Data Source Explorer"/>
+<view id="org.eclipse.wst.common.snippets.internal.ui.SnippetsView" partName="Snippets">
+<viewState>
+<entry expansion="false" extent="20" maximum="100" minimum="0" pinned="false" value="0">&#x0A;<entry selection="0"/>
+<entry selection="0"/>
+<entry selection="0"/>
+<entry selection="0"/>
+<entry selection="0"/>
+<entry selection="0"/>
+<entry selection="0"/>
+</entry>
+</viewState>
+</view>
+<view id="org.eclipse.ui.views.PropertySheet" partName="Properties">
+<viewState/>
+</view>
+<view id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" partName="Data Source Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" showCategories="true"/>
+</view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>&#x0A;<category IMemento.internal.id="Warnings (40 items)"/>
@@ -126,9 +173,11 @@
 <filteredTreeFindHistory/>
 </viewState>
 </view>
-<view id="org.eclipse.wst.server.ui.ServersView" partName="Servers"/>
+<view id="org.eclipse.wst.server.ui.ServersView" partName="Servers">
+<viewState CommonNavigator.LINKING_ENABLED="0"/>
+</view>
 </views>
-<perspectives activePart="org.eclipse.ui.navigator.ProjectExplorer" activePerspective="org.eclipse.jst.j2ee.J2EEPerspective">
+<perspectives activePart="org.eclipse.debug.ui.DebugView" activePerspective="org.eclipse.debug.ui.DebugPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jst.j2ee.internal.perspective.J2EEPerspective" id="org.eclipse.jst.j2ee.J2EEPerspective" label="Java EE"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -187,7 +236,6 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.ui.views.AllMarkersView"/>
-<view id="org.eclipse.ui.views.PropertySheet"/>
 <view id="org.eclipse.wst.server.ui.ServersView"/>
 <view id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"/>
 <view id="org.eclipse.wst.common.snippets.internal.ui.SnippetsView"/>
@@ -195,6 +243,7 @@
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
+<view id="org.eclipse.ui.views.PropertySheet"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -218,10 +267,9 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.18009168" ratioLeft="275" ratioRight="1252" relationship="2" relative="topLeft"/>
-<info folder="true" part="bottomRight" ratio="0.6641414" ratioLeft="526" ratioRight="266" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<info folder="true" part="bottomRight" ratio="0.7878788" ratioLeft="624" ratioRight="168" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="com.android.ide.eclipse.ddms.views.LogCatView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.AllMarkersView" label="Markers"/>
-<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
 <page content="org.eclipse.wst.server.ui.ServersView" label="Servers"/>
 <page content="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" label="Data Source Explorer"/>
 <page content="org.eclipse.wst.common.snippets.internal.ui.SnippetsView" label="Snippets"/>
@@ -239,7 +287,6 @@
 <part id="3"/>
 <part id="4"/>
 <part id="5"/>
-<part id="6"/>
 </presentation>
 </folder>
 </info>
@@ -247,9 +294,11 @@
 <folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
@@ -333,7 +382,7 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@503008b9" ratio="0.7865095" ratioLeft="1201" ratioRight="326" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@503008b9" ratio="0.6444008" ratioLeft="984" ratioRight="543" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
 <folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
@@ -352,7 +401,7 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.60479796" ratioLeft="479" ratioRight="313" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.6123737" ratioLeft="485" ratioRight="307" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
@@ -380,7 +429,7 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.47689074" ratioLeft="227" ratioRight="249" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
+<info part="org.eclipse.ui.editorss" ratio="0.24479167" ratioLeft="94" ratioRight="290" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
 <info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.49770793" ratioLeft="760" ratioRight="767" relationship="2" relative="org.eclipse.ui.editorss">
 <folder appearance="2" expanded="2">
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
@@ -406,150 +455,159 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" path="/Recolectapp/res/layout/activity_configuracion.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/Recolectapp/AndroidManifest.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Recolectapp/src/com/transporte/recolectapp/Configuracion.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Recolectapp/src/com/transporte/recolectapp/EnviandoDatos.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Recolectapp/src/com/transporte/recolectapp/Paradero.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" path="/Recolectapp/res/layout/activity_configuracion.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Recolectapp/src/com/transporte/recolectapp/Paradero.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Recolectapp/src/com/transporte/recolectapp/Configuracion.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Recolectapp/src/com/transporte/recolectapp/EnviandoDatos.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" path="/Recolectapp/res/layout/activity_en_movimiento.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" path="/Recolectapp/res/layout/activity_enviando_datos.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" path="/Recolectapp/res/layout/activity_main.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" path="/Recolectapp/res/layout/activity_paradero.xml"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=Recolectapp/C:\/android\/android-sdk\/platforms\/android-8\/android.jar&lt;java.lang(ClassLoader.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=Recolectapp/C:\/android\/android-sdk\/platforms\/android-8\/android.jar&lt;org.json(JSONObject.class"/>
 </editors>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="4937" y="0"/>
+<position info="not_deleted" x="5084" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="4983" y="0"/>
+<position info="not_deleted" x="5110" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="5030" y="0"/>
+<position info="not_deleted" x="5171" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="5077" y="0"/>
-</item>
-<item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="5123" y="0"/>
-</item>
-<item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="5175" y="0"/>
-</item>
-<item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="5227" y="0"/>
+<position info="not_deleted" x="5222" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
 <position info="not_deleted" x="5274" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="5992" y="0"/>
+<position info="not_deleted" x="5321" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="6122" y="0"/>
+<position info="not_deleted" x="5370" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="6243" y="0"/>
+<position info="not_deleted" x="5416" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="6360" y="0"/>
+<position info="not_deleted" x="5463" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="6477" y="0"/>
+<position info="not_deleted" x="5510" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="6122" y="0"/>
+<position info="not_deleted" x="5556" y="0"/>
 </item>
 <item historyLabel="MySQLiteHelper.java" index="0">
-<position info="not_deleted" x="6467" y="0"/>
+<position info="not_deleted" x="5608" y="0"/>
 </item>
-<item historyLabel="activity_configuracion.xml" index="1"/>
-<item historyLabel="Recolectapp Manifest" index="2"/>
-<item historyLabel="activity_configuracion.xml" index="1"/>
-<item historyLabel="Recolectapp Manifest" index="2"/>
-<item historyLabel="MySQLiteHelper.java" index="3">
-<position info="not_deleted" x="6467" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="5660" y="0"/>
 </item>
-<item historyLabel="Configuracion.java" index="4">
-<position info="not_deleted" x="557" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="5707" y="0"/>
 </item>
-<item historyLabel="EnviandoDatos.java" index="5">
-<position info="not_deleted" x="667" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="5756" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="6">
-<position info="not_deleted" x="4094" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="6472" y="0"/>
 </item>
-<item historyLabel="activity_configuracion.xml" index="7"/>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="3916" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="6573" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="7128" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="1439" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="7683" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="1447" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="7807" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="1439" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="7926" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="1447" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="8045" y="0"/>
 </item>
-<item historyLabel="MySQLiteHelper.java" index="9">
-<position info="not_deleted" x="6467" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="7683" y="0"/>
 </item>
-<item historyLabel="MySQLiteHelper.java" index="9">
-<position info="not_deleted" x="4841" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="8258" y="0"/>
 </item>
-<item historyLabel="MySQLiteHelper.java" index="9">
-<position info="not_deleted" x="4981" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="8304" y="0"/>
 </item>
-<item historyLabel="MySQLiteHelper.java" index="9">
-<position info="not_deleted" x="4841" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="8343" y="0"/>
 </item>
-<item historyLabel="Configuracion.java" index="10">
-<position info="not_deleted" x="557" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="8399" y="0"/>
 </item>
-<item historyLabel="EnviandoDatos.java" index="11">
-<position info="not_deleted" x="667" y="0"/>
+<item historyLabel="ClassLoader.class" index="1">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position/>
+<item historyLabel="JSONObject.class" index="2">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="1435" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="8399" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="1391" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="8994" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="1447" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9086" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="1391" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9119" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="1391" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9153" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9271" y="0"/>
 </item>
-<item historyLabel="Paradero.java" index="8">
-<position info="not_deleted" x="4559" y="0"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9371" y="0"/>
 </item>
-<item historyLabel="activity_configuracion.xml" index="7"/>
-<item historyLabel="activity_en_movimiento.xml" index="12"/>
-<item historyLabel="activity_enviando_datos.xml" index="13"/>
-<item historyLabel="activity_main.xml" index="14"/>
-<item historyLabel="activity_paradero.xml" index="15"/>
-<item active="true" historyLabel="activity_main.xml" index="14"/>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9608" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9676" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9823" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9862" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9923" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9994" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9860" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="10043" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9823" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9862" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9923" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9994" y="0"/>
+</item>
+<item historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9662" y="0"/>
+</item>
+<item active="true" historyLabel="MySQLiteHelper.java" index="0">
+<position info="not_deleted" x="9994" y="0"/>
+</item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -568,11 +626,29 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="ClassLoader.class" tooltip="java.lang.ClassLoader">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Recolectapp/C:\/android\/android-sdk\/platforms\/android-8\/android.jar&lt;java.lang(ClassLoader.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EnviandoDatos.java" tooltip="Recolectapp/src/com/transporte/recolectapp/EnviandoDatos.java">
+<persistable path="/Recolectapp/src/com/transporte/recolectapp/EnviandoDatos.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EnMovimiento.java" tooltip="Recolectapp/src/com/transporte/recolectapp/EnMovimiento.java">
+<persistable path="/Recolectapp/src/com/transporte/recolectapp/EnMovimiento.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Paradero.java" tooltip="Recolectapp/src/com/transporte/recolectapp/Paradero.java">
+<persistable path="/Recolectapp/src/com/transporte/recolectapp/Paradero.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MySQLiteHelper.java" tooltip="Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java">
+<persistable path="/Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Configuracion.java" tooltip="Recolectapp/src/com/transporte/recolectapp/Configuracion.java">
+<persistable path="/Recolectapp/src/com/transporte/recolectapp/Configuracion.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BotonesIniciales.java" tooltip="Recolectapp/src/com/transporte/recolectapp/BotonesIniciales.java">
+<persistable path="/Recolectapp/src/com/transporte/recolectapp/BotonesIniciales.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_paradero.xml" tooltip="Recolectapp/res/layout/activity_paradero.xml">
 <persistable path="/Recolectapp/res/layout/activity_paradero.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_main.xml" tooltip="Recolectapp/res/layout/activity_main.xml">
-<persistable path="/Recolectapp/res/layout/activity_main.xml"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_enviando_datos.xml" tooltip="Recolectapp/res/layout/activity_enviando_datos.xml">
 <persistable path="/Recolectapp/res/layout/activity_enviando_datos.xml"/>
@@ -583,35 +659,17 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_configuracion.xml" tooltip="Recolectapp/res/layout/activity_configuracion.xml">
 <persistable path="/Recolectapp/res/layout/activity_configuracion.xml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="strings.xml" tooltip="Recolectapp/res/values/strings.xml">
-<persistable path="/Recolectapp/res/values/strings.xml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_botones_iniciales.xml" tooltip="Recolectapp/res/layout/activity_botones_iniciales.xml">
+<persistable path="/Recolectapp/res/layout/activity_botones_iniciales.xml"/>
 </file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Integer.class" tooltip="java.lang.Integer">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Recolectapp/C:\/android\/android-sdk\/platforms\/android-8\/android.jar&lt;java.lang(Integer.class"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="Recolectapp/AndroidManifest.xml">
+<persistable path="/Recolectapp/AndroidManifest.xml"/>
 </file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="ThreadGroup.class" tooltip="java.lang.ThreadGroup">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Recolectapp/C:\/android\/android-sdk\/platforms\/android-8\/android.jar&lt;java.lang(ThreadGroup.class"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" tooltip="Recolectapp/src/com/transporte/recolectapp/MainActivity.java">
+<persistable path="/Recolectapp/src/com/transporte/recolectapp/MainActivity.java"/>
 </file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="String.class" tooltip="java.lang.String">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Recolectapp/C:\/android\/android-sdk\/platforms\/android-8\/android.jar&lt;java.lang(String.class"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MySQLiteHelper.java" tooltip="Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java">
-<persistable path="/Recolectapp/src/com/transporte/recolectapp/MySQLiteHelper.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Configuracion.java" tooltip="Recolectapp/src/com/transporte/recolectapp/Configuracion.java">
-<persistable path="/Recolectapp/src/com/transporte/recolectapp/Configuracion.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EnviandoDatos.java" tooltip="Recolectapp/src/com/transporte/recolectapp/EnviandoDatos.java">
-<persistable path="/Recolectapp/src/com/transporte/recolectapp/EnviandoDatos.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="R.java" tooltip="Recolectapp/gen/com/transporte/recolectapp/R.java">
-<persistable path="/Recolectapp/gen/com/transporte/recolectapp/R.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Paradero.java" tooltip="Recolectapp/src/com/transporte/recolectapp/Paradero.java">
-<persistable path="/Recolectapp/src/com/transporte/recolectapp/Paradero.java"/>
-</file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Instrumentation.class" tooltip="android.app.Instrumentation">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Recolectapp/C:\/android\/android-sdk\/platforms\/android-8\/android.jar&lt;android.app(Instrumentation.class"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_main.xml" tooltip="Recolectapp/res/layout/activity_main.xml">
+<persistable path="/Recolectapp/res/layout/activity_main.xml"/>
 </file>
 </mruList>
 </workbench>

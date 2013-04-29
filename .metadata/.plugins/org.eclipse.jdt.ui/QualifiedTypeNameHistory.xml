@@ -4,7 +4,6 @@
 <fullyQualifiedTypeName name="android.text.format.DateFormat"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="android.location.Location"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="android.content.Intent"/>
@@ -31,9 +30,11 @@
 <fullyQualifiedTypeName name="org.apache.http.protocol.HTTP"/>
 <fullyQualifiedTypeName name="org.apache.http.HttpResponse"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
-<fullyQualifiedTypeName name="com.transporte.recolectapp.R.id"/>
 <fullyQualifiedTypeName name="com.transporte.recolectapp.R.string"/>
 <fullyQualifiedTypeName name="com.transporte.recolectapp.R.layout"/>
 <fullyQualifiedTypeName name="com.transporte.recolectapp.EnviandoDatos"/>
 <fullyQualifiedTypeName name="org.apache.http.util.EntityUtils"/>
+<fullyQualifiedTypeName name="com.transporte.recolectapp.R.id"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
 </qualifiedTypeNameHistroy>
