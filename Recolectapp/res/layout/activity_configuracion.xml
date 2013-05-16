@@ -76,50 +76,30 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/tbRecorrido"
+        android:layout_alignLeft="@+id/ddLineas"
         android:layout_below="@+id/tbApellido"
         android:text="Recorrido"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF" />
 
-    <EditText
-        android:id="@+id/tbRecorrido"
-        android:layout_width="80dp"
+    <Spinner
+        android:id="@+id/ddLineas"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tbApellido"
         android:layout_below="@+id/textView4"
         android:ems="10"
-        android:hint="Ej: C12" />
-
+        tools:listitem="@android:layout/simple_spinner_item" />
+    
     <EditText
         android:id="@+id/tbPatente"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tbRecorrido"
-        android:layout_alignBottom="@+id/tbRecorrido"
+        android:layout_alignBaseline="@+id/ddLineas"
+        android:layout_alignBottom="@+id/ddLineas"
         android:layout_alignRight="@+id/tbApellido"
         android:ems="10"
         android:hint="Ej: YJSI24" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tbNPuerta"
-        android:layout_below="@+id/tbRecorrido"
-        android:text="Numero de Puerta"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" />
-
-    <EditText
-        android:id="@+id/tbNPuerta"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView6"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="Ej: 2"
-        android:inputType="number" />
 
     <Button
         android:id="@+id/btEntrar"
@@ -129,5 +109,50 @@
         android:layout_toRightOf="@+id/textView2"
         android:background="@drawable/graybutton"
         android:text="Entrar" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tbNPuerta"
+        android:layout_below="@+id/ddLineas"
+        android:text="N° Puerta"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/tbNPuerta"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ddLineas"
+        android:layout_below="@+id/textView6"
+        android:ems="10"
+        android:hint="Ej: 2"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tbNPuerta"
+        android:layout_alignLeft="@+id/tbPatente"
+        android:text="Paradero Inicial"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/tbParaderoInicial"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tbNPuerta"
+        android:layout_alignBottom="@+id/tbNPuerta"
+        android:layout_alignLeft="@+id/TextView01"
+        android:ems="10"
+        android:hint="Ej: PD481" />
+
+    
 
 </RelativeLayout>

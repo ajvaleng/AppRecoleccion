@@ -1,7 +1,13 @@
 package com.transporte.recolectapp;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +25,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,6 +58,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		public static final String COLUMN_LONGITUD = "longitud";
 		public static final String COLUMN_IDRECOLECCION = "idrecoleccion";
 		
+		public static final String COLUMN_PARADERO = "paradero";
+		
+		public static final String TABLE_RECORRIDOS = "recorridos";
+		public static final String TABLE_PARADEROS = "paraderos";
+		
 		private static final String DATABASE_NAME = "recoleccion.db";
 		private static final int DATABASE_VERSION = 1;
 
@@ -69,7 +81,19 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 	      + " real not null, " + COLUMN_LONGITUD
 	      + " real not null, " + COLUMN_IDRECOLECCION
 	      + " text not null" +");";
+	  
+	  private static final String DATABASE2_CREATE = "create table "
+			  + TABLE_RECORRIDOS +"(" + COLUMN_ID
+		      + " integer primary key autoincrement, " + COLUMN_RECORRIDO
+		      + " text not null);";
 
+	  private static final String DATABASE3_CREATE = "create table "
+			  + TABLE_PARADEROS +"(" + COLUMN_ID
+		      + " integer primary key autoincrement, " + COLUMN_RECORRIDO
+		      + " text not null, " + COLUMN_PARADERO
+		      + " text not null);";
+
+			  
 	  public MySQLiteHelper(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	  }
@@ -77,6 +101,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 	  @Override
 	  public void onCreate(SQLiteDatabase database) {
 	    database.execSQL(DATABASE_CREATE);
+	    database.execSQL(DATABASE2_CREATE);
+	    database.execSQL(DATABASE3_CREATE);
 	  }
 	  
 	  public void definirAtributosComunes(String nombre, String patente, int puerta, String recorrido,float id){
@@ -124,13 +150,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		  
 		    // Select All Query
 		    String selectQuery = "SELECT  * FROM " + TABLE_INFO;
-		    String textToJson = "{\"Recoleccion\":[";
+		    String textToJson = "{\"recoleccion\":[";
 		    ArrayList<Integer> datosPorBorrar = new ArrayList<Integer>();
 		    SQLiteDatabase db = this.getWritableDatabase();
 		    Cursor cursor = db.rawQuery(selectQuery, null);
 		 
 		    // looping through all rows and adding to list
 			String anterior = "";
+			String paraderoInicial = "";
 		    List<JSONObject> lista = new ArrayList<JSONObject>();
 		    if (cursor.moveToFirst()) {
 		        do {
@@ -158,17 +185,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		    		String periodo = "null";
 		    		
 		            // Adding contact to list
-		            
-		    		if((actual != anterior && anterior != ""))
+		            boolean prueba = !anterior.equals("");
+		    		if(!actual.equals(anterior) && !anterior.equals(""))
 		    		{
 		    			boolean correcto = false;
 		    			while(!correcto)
 		    			{
 			    			try {
-								enviarPorJson(new JSONObject(textToJson+"]}"));
+								enviarPorJson(new JSONObject(textToJson+"],\"paradero_inicial\":\""+paraderoInicial+"\"}"));
 								borrarDatos(datosPorBorrar, db);
 								correcto = true;
 								anterior = "";
+								paraderoInicial = "";
 								
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
@@ -176,13 +204,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 							}
 		    			}
 		    			datosPorBorrar = new ArrayList<Integer>();
-		    			textToJson = "{\"Recoleccion\":[";
+		    			textToJson = "{\"recoleccion\":[";
 		    		}
-		    		else if(anterior != "")
+		    		else if(!anterior.equals(""))
 		    			textToJson += ",";
 		    		
 
-						
+					if(paraderoInicial.equals(""))
+					{
+						paraderoInicial = Salida;
+					}
+					else
+					{
 						//enviarPorJson(new JSONObject("{\"latitude\":\""+ latitud + "\",\"longitude\":\"" + longitud + "\",\"llegada_paradero\":\""+
 						//		 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
 						//		 + "\",\"periodo\":\"" + periodo + "\",\"presonas_suben\":\"" + cantidadsube + "\",\"personas_bajan\":\"" +
@@ -191,27 +224,29 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 										 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
 										 + "\",\"periodo\":\"" + periodo + "\",\"presonas_suben\":\"" + cantidadsube + "\",\"personas_bajan\":\"" +
 										 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}";
-								
+						anterior = actual;
 //						db.delete(this.TABLE_INFO, this.COLUMN_ID + "=" + cursor.getString(0), null);
-		            
+					}
+					
 		         if(cursor.isLast())
 		         {
 		        	 boolean correcto = false;
 		    			while(!correcto)
 		    			{
 			    			try {
-								enviarPorJson(new JSONObject(textToJson+"]}"));
+								enviarPorJson(new JSONObject(textToJson+"],\"paradero_inicial\":\""+paraderoInicial+"\"}"));
 								borrarDatos(datosPorBorrar, db);
 								correcto = true;
 								anterior = "";
-								
+								paraderoInicial = "";
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 		    			}
 		         }
-		            	
+		          
+		         
 		        } while (cursor.moveToNext());
 		        
 		    }
@@ -252,7 +287,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 							HttpResponse response = httpclient.execute(httpost);
 							String respuesta = EntityUtils.toString(response.getEntity());
 							if(respuesta != "" && respuesta != null)
-								if(respuesta.indexOf(" 404")==-1)
+								if(respuesta.indexOf("sorry")==-1)
 										correcto = true;
 							//response.getParams()
 							//SIESSQUE RESPONSE ESTA BUENO!!!!
@@ -308,6 +343,170 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 	  public void borrarDatosYaEnviados(){
 		  SQLiteDatabase db = this.getWritableDatabase();
 		  db.execSQL("DROP TABLE IF EXISTS " + TABLE_INFO);
+	  }
+	  
+	  public void BajarParaderos()
+	  {
+		  boolean correcto = true;
+		  ArrayList<String> lineas = getLineasFromApi();
+		  String[][] cruce = null;
+		  if(lineas!=null)
+		  {
+			  cruce = new String[lineas.size()][];
+			  //bajo los paraderos
+			  //dummys por mientras
+			  for(int i = 0; i < lineas.size();i++)
+			  {
+				  cruce[i]=getParaderosLineaFromApi(i+1);
+				  if(cruce[i] ==null)
+					  correcto = false;
+			  }
+		  }
+		  else correcto = false;
+		  
+		  
+		  SQLiteDatabase db = this.getWritableDatabase();
+		  
+		  
+		  
+		  if (correcto)
+		  {
+			  db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECORRIDOS);
+			  db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARADEROS);
+			  db.execSQL(DATABASE2_CREATE);
+			  db.execSQL(DATABASE3_CREATE);
+			//si se bajan correctamente, boto la base de datos y la creo denuvo.
+			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECORRIDOS);
+			//db.execSQL(DATABASE2_CREATE);
+			for(int i = 0; i < lineas.size();i++)
+			{
+			    ContentValues values = new ContentValues();
+			    values.put(COLUMN_RECORRIDO, lineas.get(i));
+			    db.insert(TABLE_RECORRIDOS, null, values);
+			    
+			    for(int j = 0; j < cruce[i].length;j++)
+			    {
+			    	values = new ContentValues();
+			    	values.put(COLUMN_RECORRIDO, lineas.get(i));
+			    	values.put(COLUMN_PARADERO,cruce[i][j]);
+			    	db.insert(TABLE_PARADEROS, null, values);
+			    }
+			}
+			
+		  }
+		  db.close(); // Closing database connection
+	  }
+	  
+	  public List<String> getLineas()
+	  {
+		 String selectQuery = "SELECT * FROM " + TABLE_RECORRIDOS;
+		 SQLiteDatabase db = this.getWritableDatabase();
+		 
+		 Cursor cursor = db.rawQuery(selectQuery, null);
+		 ArrayList<String> recorridos = new ArrayList<String>();
+		 if (cursor.moveToFirst())
+			 do{
+				 recorridos.add(cursor.getString(1));
+			 }
+			 while (cursor.moveToNext());
+		 
+		  return recorridos;
+	  }
+	  
+	  public boolean comprobarCruce(String linea, String paradero)
+	  {
+		  boolean correcto = false;
+		  String selectQuery = "SELECT " + COLUMN_PARADERO + " FROM " + TABLE_PARADEROS + " WHERE " + 
+		  COLUMN_RECORRIDO + " = \"" + linea + "\"";
+		  SQLiteDatabase db = this.getReadableDatabase();
+		  Cursor cursor = db.rawQuery(selectQuery, null);
+		  if(cursor.moveToFirst())
+			  do{
+				  String p = cursor.getString(0);
+				  if(p.equalsIgnoreCase(paradero))
+					  return true;
+			  } 
+			  while (cursor.moveToNext());
+		  return correcto;
+	  }
+	  
+	  public ArrayList<String> getLineasFromApi()
+	  {
+		  ArrayList<String> lineas = new ArrayList<String>();
+
+		  try {
+			  InputStream is = new URL("http://citppuc.cloudapp.net/api/"+"lineas").openStream();
+		  
+		      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+		      String jsonText = readAll(rd);
+		      JSONObject json = new JSONObject("{\"lineas\":"+jsonText+"}");
+		      JSONArray lineasEnJson = json.getJSONArray("lineas");
+		      
+		      for(int i =0; i<lineasEnJson.length();i++)
+		      {
+		    	  lineas.add(lineasEnJson.getJSONObject(i).getString("codigo_linea"));
+		      }
+		      
+		    }
+		    catch(Exception e)
+		    {
+		    	lineas = null;
+		    }
+		  
+		  return lineas;
+	  }
+	  
+	  private static String readAll(Reader rd) throws IOException {
+		    StringBuilder sb = new StringBuilder();
+		    int cp;
+		    while ((cp = rd.read()) != -1) {
+		      sb.append((char) cp);
+		    }
+		    return sb.toString();
+		  }
+	  
+	  public String[] getParaderosLineaFromApi(int linea)
+	  {
+		  String[] paraderos= null;
+		  ArrayList<String> listaParaderos = new ArrayList<String>();
+		  
+		  try {
+			  InputStream is = new URL("http://citppuc.cloudapp.net/api/"+"lineas/"+linea).openStream();
+		  
+		      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+		      String jsonText = readAll(rd);
+		      JSONObject json = new JSONObject(jsonText);
+		      JSONArray secuencias = json.getJSONArray("secuencias");
+		      
+		      for(int i =0; i<secuencias.length();i++)
+		      {
+		    	  JSONArray secuenciaParaderos = secuencias.getJSONObject(i).getJSONArray("secuencia_paraderos");
+		    	  for(int j = 0; j<secuenciaParaderos.length();j++)
+		    	  {
+		    		  String paradero = secuenciaParaderos.getJSONObject(j).getString("codigo_paradero");
+		    		  if(!listaParaderos.contains(paradero))
+		    			  listaParaderos.add(paradero);
+		    	  }
+		      }
+		      
+		    }
+		    catch(Exception e)
+		    {
+		    	listaParaderos = null;
+		    }
+		  	//sacar copias
+		  if(listaParaderos!=null){
+			  if(listaParaderos.size()!=0)
+			  {
+				  Object[] lista = listaParaderos.toArray();
+				  paraderos = new String[lista.length];
+				  for(int i = 0; i < lista.length;i++)
+					  paraderos[i] = (String)lista[i];
+			  }
+			  else
+				  paraderos = new String[]{""};
+		  }
+		  return paraderos;
 	  }
 }
 
