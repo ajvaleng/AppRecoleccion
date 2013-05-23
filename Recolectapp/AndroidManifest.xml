@@ -75,6 +75,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.transporte.recolectapp.Bajar_datos"
+            android:label="@string/title_activity_bajar_datos" >
+            <intent-filter>
+                <action android:name="com.transporte.BAJARDATOS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            
+        </activity>
     </application>
 
 </manifest>

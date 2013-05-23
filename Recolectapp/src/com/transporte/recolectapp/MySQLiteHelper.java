@@ -29,14 +29,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.ProgressBar;
 
-public class MySQLiteHelper extends SQLiteOpenHelper{
+public class MySQLiteHelper extends SQLiteAssetHelper{
 	
 		static String patente;
 		static String recorrido;
@@ -98,12 +101,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	  }
 
-	  @Override
-	  public void onCreate(SQLiteDatabase database) {
-	    database.execSQL(DATABASE_CREATE);
-	    database.execSQL(DATABASE2_CREATE);
-	    database.execSQL(DATABASE3_CREATE);
-	  }
+	  //@Override
+	  //public void onCreate(SQLiteDatabase database) {
+	  //  database.execSQL(DATABASE_CREATE);
+	  //  database.execSQL(DATABASE2_CREATE);
+	  //  database.execSQL(DATABASE3_CREATE);
+	  //}
+	  
 	  
 	  public void definirAtributosComunes(String nombre, String patente, int puerta, String recorrido,float id){
 		  this.nombre = nombre;
@@ -345,21 +349,30 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		  db.execSQL("DROP TABLE IF EXISTS " + TABLE_INFO);
 	  }
 	  
-	  public void BajarParaderos()
+	  public void BajarParaderos(ProgressBar pb, Bajar_datos c)
 	  {
+		  final ProgressBar pb2 = pb;
 		  boolean correcto = true;
-		  ArrayList<String> lineas = getLineasFromApi();
+		  final String[] lineas = getLineasFromApi();
 		  String[][] cruce = null;
 		  if(lineas!=null)
 		  {
-			  cruce = new String[lineas.size()][];
+			  cruce = new String[lineas.length][];
 			  //bajo los paraderos
 			  //dummys por mientras
-			  for(int i = 0; i < lineas.size();i++)
-			  {
+			  for(int i = 0; i < lineas.length;i++)
+              {
 				  cruce[i]=getParaderosLineaFromApi(i+1);
 				  if(cruce[i] ==null)
 					  correcto = false;
+				  
+				  final int numero = i;
+				  if(numero%(lineas.length/20)==0)
+				  c.runOnUiThread(new Runnable() {
+					    public void run() {
+					    	pb2.setProgress((int)Math.floor(((numero+1)/lineas.length)));
+					    }
+					});
 			  }
 		  }
 		  else correcto = false;
@@ -378,16 +391,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 			//si se bajan correctamente, boto la base de datos y la creo denuvo.
 			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECORRIDOS);
 			//db.execSQL(DATABASE2_CREATE);
-			for(int i = 0; i < lineas.size();i++)
+			for(int i = 0; i < lineas.length;i++)
 			{
 			    ContentValues values = new ContentValues();
-			    values.put(COLUMN_RECORRIDO, lineas.get(i));
+			    values.put(COLUMN_RECORRIDO, lineas[i]);
 			    db.insert(TABLE_RECORRIDOS, null, values);
 			    
 			    for(int j = 0; j < cruce[i].length;j++)
 			    {
 			    	values = new ContentValues();
-			    	values.put(COLUMN_RECORRIDO, lineas.get(i));
+			    	values.put(COLUMN_RECORRIDO, lineas[i]);
 			    	values.put(COLUMN_PARADERO,cruce[i][j]);
 			    	db.insert(TABLE_PARADEROS, null, values);
 			    }
@@ -406,7 +419,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		 ArrayList<String> recorridos = new ArrayList<String>();
 		 if (cursor.moveToFirst())
 			 do{
-				 recorridos.add(cursor.getString(1));
+				 recorridos.add(cursor.getString(0));
 			 }
 			 while (cursor.moveToNext());
 		 
@@ -430,21 +443,26 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
 		  return correcto;
 	  }
 	  
-	  public ArrayList<String> getLineasFromApi()
+	  public String[] getLineasFromApi()
 	  {
-		  ArrayList<String> lineas = new ArrayList<String>();
+		  String[] lineas; //= new ArrayList<String>();
 
 		  try {
 			  InputStream is = new URL("http://citppuc.cloudapp.net/api/"+"lineas").openStream();
-		  
+
 		      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
 		      String jsonText = readAll(rd);
 		      JSONObject json = new JSONObject("{\"lineas\":"+jsonText+"}");
 		      JSONArray lineasEnJson = json.getJSONArray("lineas");
-		      
+		      lineas = new String[lineasEnJson.length()];
+
 		      for(int i =0; i<lineasEnJson.length();i++)
 		      {
-		    	  lineas.add(lineasEnJson.getJSONObject(i).getString("codigo_linea"));
+		    	  JSONObject aux = lineasEnJson.getJSONObject(i);
+                  String linea_codigo = aux.getString("linea_id");
+                  int lineas_codig_int = (Integer.parseInt(linea_codigo)-1);
+                  String codigo =lineasEnJson.getJSONObject(i).getString("codigo_linea");
+                  lineas[lineas_codig_int]=codigo;
 		      }
 		      
 		    }

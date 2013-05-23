@@ -10,5 +10,6 @@
     <string name="title_activity_configuracion">Configuracion</string>
     <string name="servidor">http://recolectserver.herokuapp.com/recoleccions</string>
     <string name="title_activity_botones_iniciales">BotonesIniciales</string>
+    <string name="title_activity_bajar_datos">Bajar_datos</string>
 
 </resources>
