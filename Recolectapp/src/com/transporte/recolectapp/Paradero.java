@@ -87,6 +87,15 @@ public class Paradero extends Activity {
 			}
 		});
         
+        Button cancelar = (Button) findViewById(R.id.btAtras);
+        cancelar.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v)
+        	{
+        		startActivity(new Intent("com.transporte.ENMOVIMIENTO"));
+        	}
+        });
+        
         
         Button salirParadero = (Button) findViewById(R.id.btSalidaParadero);
         salirParadero.setOnClickListener(new View.OnClickListener() {

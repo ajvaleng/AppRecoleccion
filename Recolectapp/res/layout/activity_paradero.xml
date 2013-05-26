@@ -91,4 +91,13 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/btAtras"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btBajanCorregir"
+        android:background="@drawable/graybutton"
+        android:text="Atras" />
+
 </RelativeLayout>
