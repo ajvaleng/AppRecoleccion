@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -33,6 +34,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -147,10 +149,12 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 	            + newVersion + ", which will destroy all old data");
 	    db.execSQL("DROP TABLE IF EXISTS " + TABLE_INFO);
 	    onCreate(db);
+	    db.close();
 	  }
 	  
-	  public void enviarDatos()
+	  public Intent enviarDatos()
 	  {
+		  
 		  
 		    // Select All Query
 		    String selectQuery = "SELECT  * FROM " + TABLE_INFO;
@@ -158,11 +162,13 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		    ArrayList<Integer> datosPorBorrar = new ArrayList<Integer>();
 		    SQLiteDatabase db = this.getWritableDatabase();
 		    Cursor cursor = db.rawQuery(selectQuery, null);
-		 
+
 		    // looping through all rows and adding to list
 			String anterior = "";
 			String paraderoInicial = "";
 		    List<JSONObject> lista = new ArrayList<JSONObject>();
+		    int recoleccionesEnviadas = 0;
+		    boolean falla= false;
 		    if (cursor.moveToFirst()) {
 		        do {
 		        	datosPorBorrar.add(cursor.getInt((0)));
@@ -193,19 +199,30 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		    		if(!actual.equals(anterior) && !anterior.equals(""))
 		    		{
 		    			boolean correcto = false;
+		    			int intentos = 0;
 		    			while(!correcto)
 		    			{
 			    			try {
-								enviarPorJson(new JSONObject(textToJson+"],\"paradero_inicial\":\""+paraderoInicial+"\"}"));
-								borrarDatos(datosPorBorrar, db);
-								correcto = true;
-								anterior = "";
-								paraderoInicial = "";
+								correcto = enviarPorJson(new JSONObject(textToJson+"],\"paradero_inicial\":\""+paraderoInicial+"\",\"linea\":\""+recorrido
+										+"\",\"patente\":\""+patente +"\",\"nombre\":\""+nombre +"\",\"puerta\":\""+puerta+"\"}"));
+								if(correcto)
+								{
+									borrarDatos(datosPorBorrar, db);
+									anterior = "";
+									paraderoInicial = "";
+									recoleccionesEnviadas++;
+								}
 								
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+			    			intentos++;
+			    			if(intentos>5)
+			    			{
+			    				falla = true;
+			    				break;
+			    			}
 		    			}
 		    			datosPorBorrar = new ArrayList<Integer>();
 		    			textToJson = "{\"recoleccion\":[";
@@ -213,6 +230,8 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		    		else if(!anterior.equals(""))
 		    			textToJson += ",";
 		    		
+		    		if(falla)
+		    			break;
 
 					if(paraderoInicial.equals(""))
 					{
@@ -220,14 +239,16 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 					}
 					else
 					{
+						if(!(!actual.equals(anterior) && !anterior.equals("")))
+			    		{
 						//enviarPorJson(new JSONObject("{\"latitude\":\""+ latitud + "\",\"longitude\":\"" + longitud + "\",\"llegada_paradero\":\""+
 						//		 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
 						//		 + "\",\"periodo\":\"" + periodo + "\",\"presonas_suben\":\"" + cantidadsube + "\",\"personas_bajan\":\"" +
 						//		 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}"));
 		            	textToJson +="{\"latitude\":\""+ latitud + "\",\"longitude\":\"" + longitud + "\",\"llegada_paradero\":\""+
-										 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"nombre\":\"" + nombre + "\",\"patente\":\""+ patente
-										 + "\",\"periodo\":\"" + periodo + "\",\"presonas_suben\":\"" + cantidadsube + "\",\"personas_bajan\":\"" +
-										 cantidadbaja + "\",\"puerta\":\"" + puerta + "\",\"recorrido\":\"" + recorrido + "\"}";
+										 Llegada +"\",\"salida_paradero\":\"" + Salida + "\",\"presonas_suben\":\"" + cantidadsube + "\",\"personas_bajan\":\"" +
+										 cantidadbaja + "\"}";
+			    		}
 						anterior = actual;
 //						db.delete(this.TABLE_INFO, this.COLUMN_ID + "=" + cursor.getString(0), null);
 					}
@@ -235,39 +256,59 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		         if(cursor.isLast())
 		         {
 		        	 boolean correcto = false;
+		        	 int intentos = 0;
 		    			while(!correcto)
 		    			{
 			    			try {
-								enviarPorJson(new JSONObject(textToJson+"],\"paradero_inicial\":\""+paraderoInicial+"\"}"));
-								borrarDatos(datosPorBorrar, db);
-								correcto = true;
-								anterior = "";
-								paraderoInicial = "";
+			    				correcto = enviarPorJson(new JSONObject(textToJson+"],\"paradero_inicial\":\""+paraderoInicial+"\",\"linea\":\""+recorrido
+										+"\",\"patente\":\""+patente +"\",\"nombre\":\""+nombre +"\",\"puerta\":\""+puerta+"\"}"));
+								if(correcto)
+								{
+									borrarDatos(datosPorBorrar, db);
+									anterior = "";
+									paraderoInicial = "";
+									recoleccionesEnviadas++;
+								}
+								
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+			    			intentos++;
+			    			if(intentos>5)
+			    			{
+			    				falla = true;
+			    				break;
+			    			}
 		    			}
 		         }
 		          
 		         
 		        } while (cursor.moveToNext());
 		        
+		        cursor.close();
+		        
 		    }
-
+		    Intent pasar = new Intent("com.transporte.BOTONESINICIALES");
+		    pasar.putExtra("fallo", (Serializable)falla);
+		    pasar.putExtra("recolecciones", (Serializable)recoleccionesEnviadas);
+		    db.close();
+		    return pasar;
+		    
 	  }
 	  
-	  public void enviarPorJson(JSONObject json)
+	  public boolean enviarPorJson(JSONObject json)
 	  {
+		  
 		  
 		  	//instantiates httpclient to make request
 		    HttpClient httpclient = new DefaultHttpClient();
 
 		    //url with the post data
 		    HttpPost httpost = new HttpPost("http://recolectserver.herokuapp.com/recoleccions");
+		    //HttpPost httpost = new HttpPost("192.168.0.126:3000/recoleccions");
 		    boolean correcto = false;
-		    while (!correcto)
-		    {
+
 		    	correcto = false;
 			    //passes the results to a string builder/entity
 			    StringEntity se;
@@ -286,8 +327,7 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 	
 				    
 				    try {
-				    	while(!correcto)
-				    	{
+				    	
 							HttpResponse response = httpclient.execute(httpost);
 							String respuesta = EntityUtils.toString(response.getEntity());
 							if(respuesta != "" && respuesta != null)
@@ -300,7 +340,7 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		
 								//db.delete(this.TABLE_INFO, this.COLUMN_LLEGADA+"="+json.getString("llegada_paradero"), null);
 					    	//}
-				    	}
+				    	
 					} catch (ClientProtocolException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -315,8 +355,8 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 						e1.printStackTrace();
 						correcto = false;
 					}
-		  		}
-			
+		  		
+			return correcto;
 	  }
 	  
 	  public void borrarDatos(ArrayList<Integer> datosPorBorrar, SQLiteDatabase db)
@@ -339,8 +379,12 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		    // looping through all rows and adding to list
 			
 		    if (cursor.moveToFirst()) {
+		    	cursor.close();
+		    	db.close();
 		    	return true;
 		    }
+		    cursor.close();
+		    db.close();
 		    return false;
 	  }
 	  
@@ -422,7 +466,8 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 				 recorridos.add(cursor.getString(0));
 			 }
 			 while (cursor.moveToNext());
-		 
+		 cursor.close();
+		 db.close();
 		  return recorridos;
 	  }
 	  
@@ -440,6 +485,8 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 					  return true;
 			  } 
 			  while (cursor.moveToNext());
+		  cursor.close();
+		  db.close();
 		  return correcto;
 	  }
 	  

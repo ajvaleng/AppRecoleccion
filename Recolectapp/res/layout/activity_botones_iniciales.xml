@@ -10,16 +10,6 @@
     tools:context=".BotonesIniciales" >
 
     <Button
-        android:id="@+id/btEnviarDatos"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="158dp"
-        android:background="@drawable/graybutton"
-        android:text="Enviar Datos" />
-
-    <Button
         android:id="@+id/btNuevaRecoleccion"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
@@ -48,6 +38,26 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btEnviarDatos"
         android:layout_alignTop="@+id/textView1"
-        android:text="Actualizar Paraderos" />
+        android:text="Actualizar Paraderos"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btEnviarDatos"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btNuevaRecoleccion"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="98dp"
+        android:background="@drawable/graybutton"
+        android:text="Enviar Datos" />
+
+    <TextView
+        android:id="@+id/tbDatosEnviados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btActualizar"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FF0000" />
 
 </RelativeLayout>

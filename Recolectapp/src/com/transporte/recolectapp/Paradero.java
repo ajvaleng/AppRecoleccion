@@ -25,16 +25,9 @@ public class Paradero extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_paradero);
-		LocationManager locationManager = (LocationManager) Paradero.this.getSystemService(Context.LOCATION_SERVICE);
-		Criteria criteria = new Criteria();
-		criteria.setAccuracy(Criteria.ACCURACY_FINE);
-        criteria.setAltitudeRequired(false);
-        criteria.setBearingRequired(false);
-        criteria.setCostAllowed(true);
-        criteria.setPowerRequirement(Criteria.POWER_LOW);
-        //Acordarse de descomentar
-        String bestProvider = locationManager.getBestProvider(criteria, true);
-		ubicacion = locationManager.getLastKnownLocation(bestProvider);
+
+        
+		
 		java.util.Date dt = Calendar.getInstance().getTime();
 
 		tiempoLlegada = dt.toLocaleString();
@@ -108,9 +101,38 @@ public class Paradero extends Activity {
 				//ACA SE GUARDA LA INFORMACION EN LA BASE DE DATOS!!!
 				MySQLiteHelper db = new MySQLiteHelper(Paradero.this);
 				//ACORDARSE DE BORRAR
+				LocationManager locationManager = (LocationManager) Paradero.this.getSystemService(Context.LOCATION_SERVICE);
+				Criteria criteria = new Criteria();
+				criteria.setAccuracy(Criteria.ACCURACY_FINE);
+		        criteria.setAltitudeRequired(false);
+		        criteria.setBearingRequired(false);
+		        criteria.setCostAllowed(true);
+		        criteria.setPowerRequirement(Criteria.POWER_LOW);
+		        //Acordarse de descomentar
+		        String provider = locationManager.getBestProvider(criteria, true);
+		        String provider2 = locationManager.NETWORK_PROVIDER;
+		        String provider3 = locationManager.PASSIVE_PROVIDER;
+		        ubicacion = locationManager.getLastKnownLocation(provider);
+
+		        if(ubicacion == null)
+		        {
+		        	ubicacion = locationManager.getLastKnownLocation(provider2);
+		        }
+		        if(ubicacion == null)
+		        {
+		        	ubicacion = locationManager.getLastKnownLocation(provider3);
+		        }
+				
+		        double longitud = 0;
+				double latitude = 0;
+				if(ubicacion != null)
+				{
+					longitud = ubicacion.getLongitude();
+					latitude = ubicacion.getLatitude();
+				}
 				db.addData(Paradero.this.tiempoLlegada, Paradero.this.tiempoSalida,
-						cantidadsube, cantidadbaja, Paradero.this.ubicacion.getLongitude(), 
-						Paradero.this.ubicacion.getLatitude());
+						cantidadsube, cantidadbaja, longitud, 
+						latitude);
 				
 				//db.addData(Paradero.this.tiempoLlegada, Paradero.this.tiempoSalida,	cantidadsube, 
 				//			cantidadbaja, 4, 5);

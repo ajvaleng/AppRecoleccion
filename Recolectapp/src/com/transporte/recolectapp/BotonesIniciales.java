@@ -1,5 +1,7 @@
 package com.transporte.recolectapp;
 
+import java.io.Serializable;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -16,9 +18,32 @@ public class BotonesIniciales extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_botones_iniciales);
 		Button nuevarecoleccion = (Button) findViewById(R.id.btNuevaRecoleccion);
+		findViewById(R.id.tbDatosEnviados).setVisibility(View.INVISIBLE);
         
 		MySQLiteHelper db = new MySQLiteHelper(BotonesIniciales.this);
-		
+		int numero = 0;
+		boolean falla = false;
+		try{
+			Intent a = getIntent();
+			Serializable b = a.getSerializableExtra("fallo");
+			falla = Boolean.parseBoolean(b.toString());
+			Serializable c = a.getSerializableExtra("recolecciones");
+			if(c!=null)
+				numero = Integer.parseInt(c.toString());
+		}
+		catch(Exception e){
+			e.equals(e);
+		}
+		if(falla)
+		{
+			((TextView)findViewById(R.id.tbDatosEnviados)).setText("Los datos no fueron enviados\nProblema de servidor ");
+			findViewById(R.id.tbDatosEnviados).setVisibility(View.VISIBLE);
+		}
+		else if(numero!=0)
+		{
+			((TextView)findViewById(R.id.tbDatosEnviados)).setText("Fueron enviadas "+ numero+ " recolecciones");
+			findViewById(R.id.tbDatosEnviados).setVisibility(View.VISIBLE);
+		}
         nuevarecoleccion.setOnClickListener(new View.OnClickListener() {
 			
         	@Override

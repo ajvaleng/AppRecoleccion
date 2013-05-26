@@ -21,8 +21,8 @@ public class EnviandoDatos extends Activity {
 				// TODO Auto-generated method stub
 				MySQLiteHelper db = new MySQLiteHelper(EnviandoDatos.this);
 			
-				db.enviarDatos();
-				startActivity(new Intent("com.transporte.BOTONESINICIALES"));
+				Intent intent = db.enviarDatos();
+				startActivity(intent);
 
 				finish();
 
