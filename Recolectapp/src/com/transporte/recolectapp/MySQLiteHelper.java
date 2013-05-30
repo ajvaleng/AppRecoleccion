@@ -331,7 +331,7 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 							HttpResponse response = httpclient.execute(httpost);
 							String respuesta = EntityUtils.toString(response.getEntity());
 							if(respuesta != "" && respuesta != null)
-								if(respuesta.indexOf("sorry")==-1)
+								if(respuesta.indexOf("created_at")!=-1)
 										correcto = true;
 							//response.getParams()
 							//SIESSQUE RESPONSE ESTA BUENO!!!!
