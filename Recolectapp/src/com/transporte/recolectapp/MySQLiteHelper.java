@@ -169,10 +169,16 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		    List<JSONObject> lista = new ArrayList<JSONObject>();
 		    int recoleccionesEnviadas = 0;
 		    boolean falla= false;
+		    String puertaAnterior = "";
+		    String nombreAnterior = "";
+		    String paraderoInicialAnterior = "";
+		    String recorridoAnterior = "";
+		    String patenteAnterior = "";
+		    
 		    if (cursor.moveToFirst()) {
 		        do {
 		        	datosPorBorrar.add(cursor.getInt((0)));
-		    		String puerta  = cursor.getString(1);
+		    	  	String puerta  = cursor.getString(1);
 		    		String recorrido = cursor.getString(2);
 		    		String nombre = cursor.getString(3);
 		    		String patente = cursor.getString(4);
@@ -183,15 +189,7 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		    		String latitud = cursor.getString(9);
 		    		String longitud = cursor.getString(10);
 		    		String actual = cursor.getString(11);
-		    		//String periodo = Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+1,Llegada.indexOf(" ")+2)) + 
-		    		//		(Integer.parseInt(Llegada.substring(Llegada.indexOf(" ")+4,Llegada.indexOf(" ")+)))"";
-		    		//String horaEnString = Llegada.substring(Llegada.lastIndexOf(" ")-8,Llegada.lastIndexOf(" ")-6);
-		    		//if(horaEnString.indexOf(" ")!=-1)
-		    		//	horaEnString = horaEnString.substring(1,2);
 		    		
-		    		//int hora = Integer.parseInt(horaEnString);
-		    		//int minuto = Integer.parseInt(Llegada.substring(Llegada.lastIndexOf(" ")-4,Llegada.lastIndexOf(" ")-3));
-		    		//String periodo = ((int)(hora/2)+(int)(minuto/30)) + "";
 		    		String periodo = "null";
 		    		
 		            // Adding contact to list
@@ -203,8 +201,8 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		    			while(!correcto)
 		    			{
 			    			try {
-								correcto = enviarPorJson(new JSONObject(textToJson+"],\"paradero_inicial\":\""+paraderoInicial+"\",\"linea\":\""+recorrido
-										+"\",\"patente\":\""+patente +"\",\"nombre\":\""+nombre +"\",\"puerta\":\""+puerta+"\"}"));
+								correcto = enviarPorJson(new JSONObject(textToJson+"],\"paradero_inicial\":\""+paraderoInicialAnterior+"\",\"linea\":\""+recorridoAnterior
+										+"\",\"patente\":\""+patenteAnterior +"\",\"nombre\":\""+nombreAnterior +"\",\"puerta\":\""+puertaAnterior+"\"}"));
 								if(correcto)
 								{
 									borrarDatos(datosPorBorrar, db);
@@ -283,6 +281,11 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		    			}
 		         }
 		          
+		         puertaAnterior = puerta;
+				 nombreAnterior = nombre;
+				 paraderoInicialAnterior = paraderoInicial;
+				 recorridoAnterior = recorrido;
+				 patenteAnterior = patente;
 		         
 		        } while (cursor.moveToNext());
 		        
