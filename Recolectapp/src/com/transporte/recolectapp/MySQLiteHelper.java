@@ -308,7 +308,7 @@ public class MySQLiteHelper extends SQLiteAssetHelper{
 		    HttpClient httpclient = new DefaultHttpClient();
 
 		    //url with the post data
-		    HttpPost httpost = new HttpPost("http://recolectserver.herokuapp.com/recoleccions");
+		    HttpPost httpost = new HttpPost("http://visualizap.herokuapp.com/recoleccions");
 		    //HttpPost httpost = new HttpPost("192.168.0.126:3000/recoleccions");
 		    boolean correcto = false;
 

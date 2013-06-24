@@ -32,7 +32,7 @@ public class BotonesIniciales extends Activity {
 				numero = Integer.parseInt(c.toString());
 		}
 		catch(Exception e){
-			e.equals(e);
+			e.printStackTrace();
 		}
 		if(falla)
 		{
